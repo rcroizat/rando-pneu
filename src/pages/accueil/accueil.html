@@ -1,0 +1,17 @@
+<ion-header>
+    <ion-navbar>
+       <ion-title> <img class="papatte" src="assets/img/patte.png" alt=""></ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content  ><!-- 
+<button *ngFor="let p of pages" (click)="changePage(p)"> {{p.title}} </button> -->
+<div id="body" >
+	<div id="nouvelle-fiche"  ion-text color="font" (click)="nouvelleFiche()" class="section">  <ion-icon color="primary" name="md-create"></ion-icon><b>Nouvelle fiche</b>
+	</div>
+	<div id="mes-fiches" ion-text color="font" (click)="mesFiches()" class="section"> <ion-icon color="primary"  name="md-document"></ion-icon><b>Mes fiches</b>
+	</div>
+	<div id="reglages" ion-text color="font" (click)="reglages()" class="section"><ion-icon color="primary"  name="md-settings"></ion-icon><b>Réglages</b>
+
+	</div>
+</div>
+</ion-content>

@@ -1,0 +1,67 @@
+edit {
+    .text-input-wp {
+        border: 1px solid #B9AA97;
+        height: 47px;
+        width: 297px;
+    }
+    .trio .text-input-wp {
+        margin: 13px 21px 13px 8px;
+        width: 200px;
+    }
+    .solo .text-input-wp {
+        width: 98%;
+    }
+    .right .text-input-wp {
+        float: right;
+    }
+    .item-wp {
+        padding-left: 44px;
+        padding-right: 44px;
+    }
+    .readonly input {
+        color: white;
+        background-color: #B9AA97;
+    }
+    textarea.text-input-wp {
+        width: 98%;
+        height: 120px;
+    }
+
+    .label-ios {
+       margin: 11px 8px 11px 8px;
+    }
+    #bloc-bottom {
+     	display: flex;
+     	justify-content: space-around;
+     	margin-bottom: 50px;
+    }
+
+    canvas {
+        border: 1px solid black;
+    }
+    .datetime-wp {
+        padding: 13px 8px 13px 8px;
+    }
+    .datetime-text {
+        height: 47px;
+        width: 297px;
+    }
+    .input-wrapper {
+        justify-content: space-between;
+    }
+
+    .datetime-wp .datetime-text {
+        padding:8px;
+        border: 1px solid #B9AA97;
+
+
+    }
+
+    button.item-cover{
+        position: absolute;
+        width: 297px;
+        height: 47px;
+        top:inherit;
+        left:inherit;
+    }
+}

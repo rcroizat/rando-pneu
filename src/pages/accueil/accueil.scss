@@ -1,0 +1,38 @@
+accueil {
+	#body{
+		height:100%;
+		display:flex;
+		justify-content:space-around;
+		flex-wrap:wrap;
+	}
+	#nouvelle-fiche{
+	    width: 100%;
+
+	    border-bottom: 2px solid #B9AA97;
+	}
+	#mes-fiches{
+	 	 width: 50%;
+	 	  border-right: 2px solid #B9AA97;
+	}
+	#reglages{
+ 		 width: 50%;
+	}
+
+	.section{
+		display: flex;
+	    justify-content: center;
+	    flex-direction: column;
+	    text-align: center;
+
+	}	
+
+
+	ion-icon{
+		font-size:50px;
+	}
+
+	span{
+		padding:0;
+	}
+
+}

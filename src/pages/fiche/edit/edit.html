@@ -1,0 +1,105 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button color="secondary" menuToggle class="button-menu">
+            <ion-icon class="large-button" name="menu"></ion-icon>
+        </button>
+       <ion-title> <img class="papatte" src="assets/img/patte.png" align="middle" alt=""></ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content mode="wp" >
+    <form [formGroup]="ficheForm"  *ngIf="ficheForm" (ngSubmit)="submit()" id="form">
+        <ion-list mode="wp" >
+         <ion-item mode="wp">
+                <ion-datetime mode="wp"  formControlName="arrive"  placeholder="Heure d'arrivée chez le client" cancelText="Annuler" doneText="Valider" displayFormat="HH:mm" pickerFormat="HH:mm"></ion-datetime>
+                <ion-datetime mode="wp" formControlName="depart"  placeholder="Heure de départ" cancelText="Annuler" doneText="Valider" displayFormat="HH:mm" pickerFormat="HH:mm"></ion-datetime>
+            </ion-item>
+            <ion-item mode="wp">
+                <ion-input mode="wp"   formControlName="temps" type="text" placeholder="Temps passée" ></ion-input>
+                <ion-input mode="wp" formControlName="positionRoue" class="right" type="text" placeholder="Position de la roue" ></ion-input>
+            </ion-item>
+            <ion-item mode="wp">
+                <ion-input mode="wp"  formControlName="chiffrage" type="text" placeholder="Chiffrage" ></ion-input>
+            </ion-item>
+            <ion-item mode="wp">
+                <ion-input mode="wp" formControlName="nomClient" class="solo" type="text" placeholder="Nom client" ></ion-input>
+            </ion-item>
+            <hr>
+            <ion-item mode="wp">
+                <ion-input mode="wp" formControlName="nomAdresse" class="solo" type="text" placeholder="Nom et adresse" ></ion-input>
+            </ion-item>
+            <ion-item mode="wp">
+                <ion-input mode="wp" formControlName="dimension" class="trio" type="text" placeholder="Dimension" ></ion-input>
+                <ion-input mode="wp" formControlName="nvh"  class="trio" type="text" placeholder="NVH"></ion-input>
+                <ion-input mode="wp" formControlName="kmCompteur" class="trio" type="text" placeholder="Kilomètres compteur" ></ion-input>
+            </ion-item>
+            <hr>
+            <ion-item mode="wp">
+                <ion-input mode="wp"  class="readonly" type="text" readonly value="Démontage/remontage" ></ion-input>
+                <ion-input mode="wp" formControlName="demontage" class="right" type="text" placeholder="Quantité" ></ion-input>
+            </ion-item>
+            <ion-item mode="wp">
+                <ion-input mode="wp"  class="readonly" type="text" readonly value="Dépose/repose" ></ion-input>
+                <ion-input mode="wp"  formControlName="depose" class="right" type="text" placeholder="Quantité" ></ion-input>
+            </ion-item>
+            <ion-item mode="wp">
+                <ion-input mode="wp" class="readonly" type="text" readonly value="Réparation/Tubeless" ></ion-input>
+                <ion-input mode="wp"  formControlName="reparation" class="right" type="text" placeholder="Quantité" ></ion-input>
+            </ion-item>
+            <ion-item mode="wp">
+                <ion-input mode="wp" class="readonly" type="text" readonly value="Réparation CH.AAIR"></ion-input>
+                <ion-input mode="wp"  formControlName="chaair" class="right" type="text" placeholder="Quantité" ></ion-input>
+            </ion-item>
+            <ion-item mode="wp">
+                <ion-input mode="wp" class="readonly" type="text" readonly value="Retaillage"></ion-input>
+                <ion-input mode="wp"  formControlName="retaillage" class="right" type="text" placeholder="Quantité" ></ion-input>
+            </ion-item>
+            <ion-item mode="wp">
+                <ion-input mode="wp" class="readonly" type="text" readonly  value="Emplatre"></ion-input>
+                <ion-input mode="wp" formControlName="emplatre" class="right" type="text" placeholder="Quantité" ></ion-input>
+            </ion-item>
+            <ion-item mode="wp">
+                <ion-input mode="wp" class="readonly" type="text" readonly value="Valve"></ion-input>
+                <ion-input mode="wp"  formControlName="valve" class="right" type="text" placeholder="Quantité" ></ion-input>
+            </ion-item>
+            <ion-item mode="wp">
+                <ion-input mode="wp" class="readonly" type="text" readonly value="Forfait véhivulé" ></ion-input>
+                <ion-input mode="wp"  formControlName="forfait" class="right" type="text" placeholder="Quantité" ></ion-input>
+            </ion-item>
+            <ion-item mode="wp">
+                <ion-input mode="wp" class="readonly" type="text" readonly value="Fourniture"></ion-input>
+                <ion-input mode="wp" formControlName="fourniture" class="right" type="text" placeholder="Quantité" ></ion-input>
+            </ion-item>
+            +
+            <ion-item>
+            <hr>
+            </ion-item>
+            <ion-item mode="wp">
+                <ion-textarea class="textarea" formControlName="observation" placeholder="Observation" mode="wp">
+                </ion-textarea>
+            </ion-item>
+            <ion-item mode="wp">
+                <ion-input mode="wp"  formControlName="numeroPneu" class="solo" type="text" placeholder="N° pneu monté" ></ion-input>
+            </ion-item>
+            <ion-item mode="wp">
+                <ion-input mode="wp"  formControlName="pression" type="text" placeholder="Contrôle pression" ></ion-input>
+                <ion-input mode="wp"  formControlName="serrage" class="right"  type="text" placeholder="Contrôle serrage" ></ion-input>
+            </ion-item>
+            <ion-item mode="wp">
+                Prière de resserer les roues après 25Km, 100Km et ensuite périodiquement
+            </ion-item>
+            <ion-item mode="wp">
+                <div id="bloc-bottom">
+                    <div>Signature responsable<br><br>
+                    <img src="{{fiche.signatureResponsable}}"/></div>
+                    <div class="right">Signature client<br><br>
+                    <img src="{{fiche.signatureClient}}"/></div>
+                </div>
+            </ion-item>
+            <ion-item mode="wp">
+                <button mode="wp" ion-button large type="submit" [disabled]="!ficheForm.valid">Enregistrer
+                </button>
+            </ion-item>
+        </ion-list>
+        </form>
+    <div *ngIf="msgErreur">{{msgErreur}}</div>
+</ion-content>

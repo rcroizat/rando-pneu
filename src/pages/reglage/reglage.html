@@ -1,0 +1,22 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button color="secondary" menuToggle class="button-menu">
+            <ion-icon class="large-button" name="menu"></ion-icon>
+        </button>
+        <ion-title> <img class="papatte" src="assets/img/patte.png" align="middle" alt=""></ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <ion-list>
+        <ion-item [style.color]="'red'" (click)="deconnexion()">
+           Déconnexion
+            <ion-icon name="md-close"></ion-icon>
+        </ion-item>
+        <ion-item>
+            <ion-toggle (ionChange)="change($event)" checked="false"></ion-toggle>
+            <ion-label>
+                Envoyer la fiche à l'enregistrement
+            </ion-label>
+        </ion-item>
+    </ion-list>
+</ion-content>

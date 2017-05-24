@@ -1,0 +1,22 @@
+<ion-header>
+    <ion-navbar>
+       <ion-title> <img class="papatte" src="assets/img/patte.png" align="middle" alt=""></ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content id="content">
+    <div id="flex">
+
+              <ion-icon class="person" name="person"></ion-icon>
+        <div id="login">
+
+            <form [formGroup]="loginForm" (ngSubmit)="submit()">
+                <ion-input type="text" placeholder="Identifiant" formControlName="login">
+                </ion-input>
+                <ion-input type="password" placeholder="Mot de passe" formControlName="password">
+                </ion-input>
+                <button ion-button color="primary" block type="submit" [disabled]="!loginForm.valid">Valider
+                </button>
+            </form>
+        </div>
+    </div>
+</ion-content>

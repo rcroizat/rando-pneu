@@ -1,0 +1,38 @@
+detail {
+    .text-input-wp {
+        border: 1px solid #B9AA97;
+        height: 47px;
+        width: 297px;
+    }
+    .trio .text-input-wp {
+        margin: 13px 21px 13px 8px;
+        width: 200px;
+    }
+    .solo .text-input-wp {
+        width: 98%;
+    }
+    .right .text-input-wp {
+        float: right;
+    }
+    .item-wp {
+        padding-left: 44px;
+        padding-right: 44px;
+    }
+    .readonly input {
+        color: white;
+        background-color: #B9AA97;
+    }
+    textarea.text-input-wp {
+        width: 98%;
+        height: 120px;
+    }
+
+    .label-ios {
+       margin: 11px 8px 11px 8px;
+    }
+    #bloc-bottom {
+     	display: flex;
+     	justify-content: space-around;
+     	margin-bottom: 50px;
+    }
+}
