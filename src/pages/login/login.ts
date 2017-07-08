@@ -20,7 +20,6 @@ export class LoginPage {
 	      login: ['', Validators.required],
 	      password: ['', Validators.required]
     	});
-
 	}
 
 	submit() {
@@ -30,7 +29,4 @@ export class LoginPage {
    			this.navCtrl.setRoot(AccueilPage);
 	    }).catch(error => alert(error));
 	}
-
-
-
 }

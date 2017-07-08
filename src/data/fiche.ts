@@ -26,4 +26,5 @@ export class Fiche {
         serrage:string;
         signatureClient:string;
         signatureResponsable:string;
+        aEnvoyer: boolean;
 }

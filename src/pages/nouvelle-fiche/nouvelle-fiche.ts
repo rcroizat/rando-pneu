@@ -24,10 +24,6 @@ export class NouvelleFichePage {
   @ViewChild(SignatureResponsable) signatureResponsable: SignatureResponsable;
 
 
-  Time : any = {
-  	lala : '',
-  	lolo : ''
-  };
 
 	user : any;
 	msgErreur : string;
@@ -67,9 +63,9 @@ export class NouvelleFichePage {
 
 
 
-	submit() : void{
-		let signatureClient = this.signatureClient.getSignature();
-		let signatureResponsable = this.signatureResponsable.getSignature()
+	save() : void{
+		let signatureClient = this.signatureClient.getSignature(); // recupere les coordoonnees
+		let signatureResponsable = this.signatureResponsable.getSignature();
 		this._ficheService.create(this.ficheForm.value, signatureResponsable, signatureClient, (value)  => {
 			if(value){
 			   this.callback();		

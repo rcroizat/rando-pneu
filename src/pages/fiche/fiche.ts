@@ -47,7 +47,7 @@ export class FichePage  implements OnInit {
 
   send(event: Event, fiche:Fiche): void {
    event.stopPropagation();
-   this._ficheService.sendFiche(fiche).then(val => console.log(val));
+   this._ficheService.sendFiche(fiche);
   }
 
 /*

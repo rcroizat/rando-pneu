@@ -21,19 +21,18 @@ export class AccueilPage {
   constructor(public navCtrl: NavController, private menu: MenuController) {
     this.menu = menu;
     this.menu.swipeEnable(false);
-
-
-
-
   }
+
   mesFiches(){
     this.navCtrl.setRoot(FichePage);
     this.menu.swipeEnable(true);
   }
+
   reglages(){
     this.navCtrl.setRoot(ReglagePage);
     this.menu.swipeEnable(true);
   }
+  
   nouvelleFiche(){
     this.navCtrl.setRoot(NouvelleFichePage);
     this.menu.swipeEnable(true);

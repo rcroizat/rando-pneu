@@ -2,91 +2,132 @@ import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 import { Fiche } from '../data/fiche';
 import { Storage } from '@ionic/storage';
+import { AlertController, LoadingController } from 'ionic-angular';
 
-
+import 'rxjs/Rx';
 
 
 @Injectable()
 export class FicheService {
-private url = 'http://www.rando-pneus.fr/api/mail.php';  // URL to web api
-private headers = new Headers({'Content-Type': 'application/json'});
+  private url = 'http://www.rando-pneus.fr/api/mail.php';  // URL to web api
+  private headers = new Headers({ 'Content-Type': 'application/json' });
 
-fiche : any;
-user  : any;
-  constructor(public storage : Storage, public http: Http) {
+  fiche: any;
+  user: any;
+  constructor(private loadingController: LoadingController, public storage: Storage, public http: Http, public alertCtrl: AlertController) {
     this.fiche = [];
-     this.storage.get('user').then((user) => {
+    this.storage.get('user').then((user) => {
       this.user = user;
-     });
-     ;
+    });
+    ;
   }
   private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error); // for demo purposes only
+    console.error('An error occurred', error);
     return Promise.reject(error.message || error);
   }
 
-  
+
   getFiches() {
-       let arr  = [];
-      return this.storage.forEach((value, key, index) => {
-        if(key.indexOf('fiche') == 0){
-          arr.push(value);
-        }
-      }).then(() =>  arr);
-};
+    let arr = [];
+    return this.storage.forEach((value, key, index) => {
+      if (key.indexOf('fiche') == 0) {
+        arr.push(value);
+      }
+    }).then(() => arr);
+  };
 
 
-  getFiche(id:number){ 
-    return this.storage.get('fiche'+id).then(
-       (val) => val
-       ).catch(this.handleError);
+  getFiche(id: number) {
+    return this.storage.get('fiche' + id).then(
+      (val) => val
+    ).catch(this.handleError);
   }
 
-  sendFiche(fiche: Fiche) { 
+  sendFicheOld(fiche: Fiche) {
 
-    let ficheClean : any= fiche;
+    let ficheClean: any = fiche;
     ficheClean.nom = 'kaka';
     ficheClean.prenom = this.user.prenom;
-    console.log(ficheClean)
-      return this.http
-      .post(this.url, JSON.stringify(ficheClean), {headers: this.headers})
+    return this.http
+      .post(this.url, JSON.stringify(ficheClean), { headers: this.headers })
       .toPromise()
       .then(res => res)
       .catch(this.handleError);
 
 
-     
   }
   
+  sendFiche(fiche: Fiche) {
+    let ficheClean: any = fiche;
+    ficheClean.nom = 'kaka';
+    ficheClean.prenom = this.user.prenom;
+    return this.http
+      .post(this.url, JSON.stringify(ficheClean), { headers: this.headers })
+      .subscribe(
+      res => {
+        if (res) {
+          let alert = this.alertCtrl.create({
+            title: 'Demande envoyée !',
+            subTitle: 'Votre fiche a bien été envoyée.',
+            buttons: [
+              {
+                text: 'OK',
+                handler: () => {
+                  // this.nav.setRoot(MensualitesPage);
+                  console.log('heandler ok' + ficheClean);
+                }
+              }
+            ]
+          });
+          alert.present();
+        }
+      },
+      error => {
+        console.log('fiche.ts l.85 : ' + error);
+        console.log('fichclen' + JSON.stringify(ficheClean));
+        let alert = this.alertCtrl.create({
+          title: 'Erreur',
+          subTitle: 'Votre fiche n\'a pas été envoyée, elle sera envoyée lorsque le serveur sera joignable.',
+          buttons: ['OK']
+        });
+        ficheClean.aEnvoyer = true;
+        this.edit(ficheClean.id, ficheClean);
+        alert.present();
+      }
+      )
 
-  create(fiche: Fiche, signatureResponsable : string,  signatureClient : string,  callback ) {
+
+  }
+
+  create(fiche: Fiche, signatureResponsable: string, signatureClient: string, callback) {
 
     this.storage.ready().then(() => {
-     
-     this.storage.get('i').then(val => {
-       let i : number = val+1;
-       fiche.id = i;
-       fiche.signatureResponsable = signatureResponsable;
-       fiche.signatureClient = signatureClient;
-       this.storage.set('fiche'+i, fiche)
-       this.storage.set('i', i);
-       callback(true);
-       })
-     .catch(this.handleError);
+
+      this.storage.get('i').then(val => {
+        let i: number = val + 1;
+        fiche.id = i;
+        fiche.signatureResponsable = signatureResponsable;
+        fiche.signatureClient = signatureClient;
+        fiche.aEnvoyer = false;
+        this.storage.set('fiche' + i, fiche)
+        this.storage.set('i', i);
+        callback(true);
+      })
+        .catch(this.handleError);
     });
 
-      
+
   }
 
 
-    edit(id: number, fiche:Fiche) {
-      fiche.id = id;
-    return this.storage.set('fiche'+id, fiche);
-  } 
+  edit(id: number, fiche: Fiche) {
+    fiche.id = id;
+    return this.storage.set('fiche' + id, fiche);
+  }
 
-   delete(id: number) {
-    return this.storage.remove('fiche'+id);
-    }
+  delete(id: number) {
+    return this.storage.remove('fiche' + id);
+  }
 
 
 }

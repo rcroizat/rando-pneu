@@ -7,7 +7,7 @@
     </ion-navbar>
 </ion-header>
 <ion-content mode="wp">
-    <form [formGroup]="ficheForm" (ngSubmit)="submit()" id="form">
+    <form [formGroup]="ficheForm" (ngSubmit)="save()" id="form">
         <ion-list mode="wp">
             <ion-item mode="wp">
                 <ion-datetime mode="wp"  formControlName="arrive"  placeholder="Heure d'arrivée chez le client" cancelText="Annuler" doneText="Valider" displayFormat="HH:mm" pickerFormat="HH:mm"></ion-datetime>
