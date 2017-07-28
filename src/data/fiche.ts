@@ -27,4 +27,5 @@ export class Fiche {
         signatureClient:string;
         signatureResponsable:string;
         aEnvoyer: boolean;
+        envoye: boolean;
 }

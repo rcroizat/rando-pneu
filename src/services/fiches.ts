@@ -79,18 +79,20 @@ export class FicheService {
               }
             ]
           });
-          alert.present();
+        ficheClean.envoye = true; // on maj le champs envoye a true, et on edit la fiche
+        ficheClean.Aenvoyer = false; // on maj le champs envoye a true, et on edit la fiche
+        this.edit(ficheClean.id, ficheClean);
+        alert.present();
         }
       },
       error => {
-        console.log('fiche.ts l.85 : ' + error);
-        console.log('fichclen' + JSON.stringify(ficheClean));
         let alert = this.alertCtrl.create({
           title: 'Erreur',
           subTitle: 'Votre fiche n\'a pas été envoyée, elle sera envoyée lorsque le serveur sera joignable.',
           buttons: ['OK']
         });
-        ficheClean.aEnvoyer = true;
+        ficheClean.aEnvoyer = true; // on maj le champs Aenvoyer a true, et on edit la fiche
+        ficheClean.envoye = false;
         this.edit(ficheClean.id, ficheClean);
         alert.present();
       }
@@ -109,6 +111,7 @@ export class FicheService {
         fiche.signatureResponsable = signatureResponsable;
         fiche.signatureClient = signatureClient;
         fiche.aEnvoyer = false;
+        fiche.envoye = false;
         this.storage.set('fiche' + i, fiche)
         this.storage.set('i', i);
         callback(true);

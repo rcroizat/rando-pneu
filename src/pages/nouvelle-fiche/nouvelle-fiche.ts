@@ -29,7 +29,7 @@ export class NouvelleFichePage {
 	msgErreur : string;
 	ficheForm : FormGroup;
  	fiche : any;
- 	state : boolean;
+ 	autosend : boolean;
 
 	constructor( private formBuilder: FormBuilder,  private _ficheService: FicheService, private _userService: UserService, public nav: NavController) {
 	  this.ficheForm = this.formBuilder.group({
@@ -58,7 +58,7 @@ export class NouvelleFichePage {
 	      pression: [''],
 	      serrage: ['']
     	});
-	  this._userService.getState().then(state => this.state = state);
+	  this._userService.getState().then(autosend => this.autosend = autosend);
 	}
 
 

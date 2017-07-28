@@ -104,7 +104,7 @@
                 </div>
             </ion-item>
             <ion-item mode="wp">
-                <button mode="wp" *ngIf="state;else other_content" ion-button large type="submit" [disabled]="!ficheForm.valid">Envoyer
+                <button mode="wp" *ngIf="autosend;else other_content" ion-button large type="submit" [disabled]="!ficheForm.valid">Envoyer
                 </button>
 
                 <ng-template #other_content><button mode="wp" ion-button large type="submit" [disabled]="!ficheForm.valid">Enregistrer
