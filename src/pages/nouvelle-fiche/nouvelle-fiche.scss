@@ -62,4 +62,25 @@ nouvelle-fiche {
         top:inherit;
         left:inherit;
     }
+
+
+    .selector{
+        color:white;
+        background-color: #B9AA97;
+        
+        border: 1px solid #B9AA97;
+    height: 47px;
+    width: 297px;
+    
+    margin: 13px 8px 13px 8px;
+    }
+    .selectorTrio{
+
+        margin: 13px 120px  13px 8px;
+        width: 200px;
+            border: 1px solid #B9AA97;
+    height: 47px;
+    display:flex;
 }
+}
+

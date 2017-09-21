@@ -10,8 +10,10 @@
     <form [formGroup]="ficheForm" (ngSubmit)="save()" id="form">
         <ion-list mode="wp">
             <ion-item mode="wp">
-                <ion-datetime mode="wp"  formControlName="arrive"  placeholder="Heure d'arrivée chez le client" cancelText="Annuler" doneText="Valider" displayFormat="HH:mm" pickerFormat="HH:mm"></ion-datetime>
-                <ion-datetime mode="wp" formControlName="depart"  placeholder="Heure de départ" cancelText="Annuler" doneText="Valider" displayFormat="HH:mm" pickerFormat="HH:mm"></ion-datetime>
+                <ion-datetime mode="wp" formControlName="arrive" placeholder="Heure d'arrivée chez le client" cancelText="Annuler" doneText="Valider"
+                    displayFormat="HH:mm" pickerFormat="HH:mm"></ion-datetime>
+                <ion-datetime mode="wp" formControlName="depart" placeholder="Heure de départ" cancelText="Annuler" doneText="Valider" displayFormat="HH:mm"
+                    pickerFormat="HH:mm"></ion-datetime>
             </ion-item>
             <ion-item mode="wp">
                 <ion-input mode="wp" formControlName="temps" type="text" placeholder="Temps passée"></ion-input>
@@ -28,13 +30,26 @@
                 <ion-input mode="wp" formControlName="nomAdresse" class="solo" type="text" placeholder="Nom et adresse"></ion-input>
             </ion-item>
             <ion-item mode="wp">
-                <ion-input mode="wp" formControlName="dimension" class="trio" type="text" placeholder="Dimension"></ion-input>
+
+                <ion-select class="selectorTrio  trio">
+                    <ion-option disabled  selected value="valve">Dimension</ion-option>
+                    <ion-option  value="P2012">P2012 PNEU 10 X 16 NHS</ion-option>
+                    <ion-option  value="P2919">P2919 PNEU 13 X 22.5 HANKOOK DM09 RR:D A:C 72DB</ion-option>
+                    <ion-option  value="P2920">P2920 PNEU 13 X 22.5 HANKOOK AM06 R:D A:C 72DB</ion-option>
+                    <ion-option  value="P2938">P2938 PNEU 385/65 X 22.5 HANKOOK .AM15 RR:D A:C</ion-option>
+                    <ion-option  value="P3316">P3316 PNEU 315/70 X 22.5 CONTI.HYBRID HS3 154/15</ion-option>
+                    <ion-option  value="P3318">P3318 PNEU 315/80 X 22.5 CONTINENTAL HYBRID HS3</ion-option>
+                    <ion-option  value="P3320">P3320 PNEU 385/55 X 22.5 CONTINENTAL HYBRID HT3</ion-option>
+                    <ion-option  value="P3337">P3337 PNEU 385/55 22.5 CONTINENTAL CHT3 160K</ion-option>
+
+                </ion-select>
                 <ion-input mode="wp" formControlName="nvh" class="trio" type="text" placeholder="NVH"></ion-input>
                 <ion-input mode="wp" formControlName="kmCompteur" class="trio" type="text" placeholder="Kilomètres compteur"></ion-input>
             </ion-item>
             <hr>
             <ion-item mode="wp">
                 <ion-input mode="wp" class="readonly" type="text" readonly value="Démontage/remontage"></ion-input>
+
                 <ion-input mode="wp" formControlName="demontage" class="right" type="text" placeholder="Quantité"></ion-input>
             </ion-item>
             <ion-item mode="wp">
@@ -54,11 +69,41 @@
                 <ion-input mode="wp" formControlName="retaillage" class="right" type="text" placeholder="Quantité"></ion-input>
             </ion-item>
             <ion-item mode="wp">
-                <ion-input mode="wp" class="readonly" type="text" readonly value="Emplatre"></ion-input>
+                <ion-select class="selector">
+                    <ion-option selected value="ddddf">Emplatre</ion-option>
+                    <ion-option value="G150">G150 Emplatre 110 TL</ion-option>
+                    <ion-option value="G152">G152 Emplatre 120 TL</ion-option>
+                    <ion-option value="G153">G153 Emplatre 125 TL</ion-option>
+                    <ion-option value="G154">G154 Emplatre 135 TL</ion-option>
+                    <ion-option value="G155">G155 Emplatre 140 TL</ion-option>
+                    <ion-option value="G156f">G156 Emplatre 142 TL</ion-option>
+                    <ion-option value="G157">G157 Emplatre 144 TL</ion-option>
+                    <ion-option value="G158">G158 Emplatre 145 TL</ion-option>
+                    <ion-option value="G159">G159 Emplatre 146 TL</ion-option>
+                    <ion-option value="G169">G169 Emplatre PN02L</ion-option>
+                    <ion-option value="G170">G170 Emplatre PN03</ion-option>
+                    <ion-option value="G171">G171 Emplatre PN04</ion-option>
+                    <ion-option value="G172">G172 Emplatre PN05</ion-option>
+                    <ion-option value="G173">G173 Emplatre PN06</ion-option>
+                </ion-select>
+
                 <ion-input mode="wp" formControlName="emplatre" class="right" type="text" placeholder="Quantité"></ion-input>
             </ion-item>
             <ion-item mode="wp">
-                <ion-input mode="wp" class="readonly" type="text" readonly value="Valve"></ion-input>
+                <ion-select class="selector">
+                    <ion-option selected value="valve">Valve</ion-option>
+                    <ion-option selected value="G106">G106 Valve Alcoa Jante alu type 70MS07N2 (40)</ion-option>
+                    <ion-option selected value="G107">G107 Valve TR 413</ion-option>
+                    <ion-option selected value="G108">G108 Valve TR 414 L</ion-option>
+                    <ion-option selected value="G109">G109 Valve TR 415</ion-option>
+                    <ion-option selected value="G127">G127 Valve REF.1294 (445-385-18 X22.5)</ion-option>
+                    <ion-option selected value="G128">G128 Valve GC</ion-option>
+                    <ion-option selected value="G130">G130 Vave REF.1486 - REF.1680 (11-12)</ion-option>
+                    <ion-option selected value="G132">G132 Valve GSW35 AIR&EAU</ion-option>
+                    <ion-option selected value="G133">G133 Valve 2123 (courtes 13 X 22.5)</ion-option>
+                    <ion-option selected value="G135">G135 Valve REF. 4441 (445/65X 22.5)</ion-option>
+                    <ion-option selected value="G136">G136 Valve REF 1151 (445/65X 22.5)</ion-option>
+                </ion-select>
                 <ion-input mode="wp" formControlName="valve" class="right" type="text" placeholder="Quantité"></ion-input>
             </ion-item>
             <ion-item mode="wp">
@@ -89,13 +134,14 @@
             </ion-item>
             <ion-item mode="wp">
                 <div id="bloc-bottom">
+
                     <div>Signature responsable :
                         <br>
                         <br>
-                        <signature-responsable>
-                        </signature-responsable>
+                            <signature-responsable>
+                            </signature-responsable>
                     </div>
-                    <div class="right">Signature client :
+                    <div class="right">Signature client ee:
                         <br>
                         <br>
                         <signature-client>
