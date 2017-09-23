@@ -19,6 +19,7 @@ import { NouvelleFichePage } from '../pages/nouvelle-fiche/nouvelle-fiche';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
   
+  rootPage: any = NouvelleFichePage; // a commenter
 
   pages: Array<{title: string, component: any, icon: string}>;
 

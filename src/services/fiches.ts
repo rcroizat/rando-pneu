@@ -59,8 +59,20 @@ export class FicheService {
   
   sendFiche(fiche: Fiche) {
     let ficheClean: any = fiche;
-    ficheClean.nom = 'kaka';
-    ficheClean.prenom = this.user.prenom;
+    ficheClean.nom = this.user.nom ;
+    ficheClean.prenom = this.user.prenom || 'prenom';
+
+
+    /******************************* */
+    /******************************* */
+    /************A RETIRER********** */
+    /******************************* */
+    /******************************* */
+    ficheClean.signatureClient = 0;
+    ficheClean.signatureResponsable = 0;
+
+
+    /************************/ 
     return this.http
       .post(this.url, JSON.stringify(ficheClean), { headers: this.headers })
       .subscribe(
