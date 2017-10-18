@@ -31,8 +31,7 @@
             </ion-item>
             <ion-item mode="wp">
 
-                <ion-select class="selectorTrio  trio">
-                    <ion-option disabled selected value="valve">Dimension</ion-option>
+                <ion-select class="selectorTrio  trio" formControlName="dimension" placeholder="Dimension">
                     <ion-option value="P2012">P2012 PNEU 10 X 16 NHS</ion-option>
                     <ion-option value="P2919">P2919 PNEU 13 X 22.5 HANKOOK DM09 RR:D A:C 72DB</ion-option>
                     <ion-option value="P2920">P2920 PNEU 13 X 22.5 HANKOOK AM06 R:D A:C 72DB</ion-option>
@@ -68,115 +67,94 @@
                 <ion-input mode="wp" class="readonly" type="text" readonly value="Retaillage"></ion-input>
                 <ion-input mode="wp" formControlName="retaillage" class="right" type="text" placeholder="Quantité"></ion-input>
             </ion-item>
-            <ion-item mode="wp">
-                <ion-select class="selector">
-                    <ion-option selected value="emplatre">Emplatre</ion-option>
-                    <ion-option value="G150">G150 Emplatre 110 TL</ion-option>
-                    <ion-option value="G152">G152 Emplatre 120 TL</ion-option>
-                    <ion-option value="G153">G153 Emplatre 125 TL</ion-option>
-                    <ion-option value="G154">G154 Emplatre 135 TL</ion-option>
-                    <ion-option value="G155">G155 Emplatre 140 TL</ion-option>
-                    <ion-option value="G156f">G156 Emplatre 142 TL</ion-option>
-                    <ion-option value="G157">G157 Emplatre 144 TL</ion-option>
-                    <ion-option value="G158">G158 Emplatre 145 TL</ion-option>
-                    <ion-option value="G159">G159 Emplatre 146 TL</ion-option>
-                    <ion-option value="G169">G169 Emplatre PN02L</ion-option>
-                    <ion-option value="G170">G170 Emplatre PN03</ion-option>
-                    <ion-option value="G171">G171 Emplatre PN04</ion-option>
-                    <ion-option value="G172">G172 Emplatre PN05</ion-option>
-                    <ion-option value="G173">G173 Emplatre PN06</ion-option>
-                </ion-select>
+            <div formGroupName="emplatre">
+                <ion-item mode="wp">
+                    <ion-select class="selector" formControlName="nom" placeholder="Emplatre">
+                        <ion-option value="G150">G150 Emplatre 110 TL</ion-option>
+                        <ion-option value="G152">G152 Emplatre 120 TL</ion-option>
+                        <ion-option value="G153">G153 Emplatre 125 TL</ion-option>
+                        <ion-option value="G154">G154 Emplatre 135 TL</ion-option>
+                        <ion-option value="G155">G155 Emplatre 140 TL</ion-option>
+                        <ion-option value="G156">G156 Emplatre 142 TL</ion-option>
+                        <ion-option value="G157">G157 Emplatre 144 TL</ion-option>
+                        <ion-option value="G158">G158 Emplatre 145 TL</ion-option>
+                        <ion-option value="G159">G159 Emplatre 146 TL</ion-option>
+                        <ion-option value="G169">G169 Emplatre PN02L</ion-option>
+                        <ion-option value="G170">G170 Emplatre PN03</ion-option>
+                        <ion-option value="G171">G171 Emplatre PN04</ion-option>
+                        <ion-option value="G172">G172 Emplatre PN05</ion-option>
+                        <ion-option value="G173">G173 Emplatre PN06</ion-option>
+                    </ion-select>
 
-                <ion-input mode="wp" formControlName="emplatre" class="right" type="text" placeholder="Quantité"></ion-input>
-            </ion-item>
-            <ion-item mode="wp">
-                <ion-select class="selector">
-                    <ion-option selected disabled value="valve">Valve</ion-option>
-                    <ion-option value="G106">G106 Valve Alcoa Jante alu type 70MS07N2 (40)</ion-option>
-                    <ion-option value="G107">G107 Valve TR 413</ion-option>
-                    <ion-option value="G108">G108 Valve TR 414 L</ion-option>
-                    <ion-option value="G109">G109 Valve TR 415</ion-option>
-                    <ion-option value="G127">G127 Valve REF.1294 (445-385-18 X22.5)</ion-option>
-                    <ion-option value="G128">G128 Valve GC</ion-option>
-                    <ion-option value="G130">G130 Vave REF.1486 - REF.1680 (11-12)</ion-option>
-                    <ion-option value="G132">G132 Valve GSW35 AIR&EAU</ion-option>
-                    <ion-option value="G133">G133 Valve 2123 (courtes 13 X 22.5)</ion-option>
-                    <ion-option value="G135">G135 Valve REF. 4441 (445/65X 22.5)</ion-option>
-                    <ion-option value="G136">G136 Valve REF 1151 (445/65X 22.5)</ion-option>
-                </ion-select>
-                <ion-input mode="wp" formControlName="valve" class="right" type="text" placeholder="Quantité"></ion-input>
-            </ion-item>
+                    <ion-input mode="wp" formControlName="quantite" class="right" type="text" placeholder="Quantité"></ion-input>
+                </ion-item>
+            </div>
+
+            <div formGroupName="valve">
+                <ion-item mode="wp">
+                    <ion-select class="selector" formControlName="nom" placeholder="Valve">
+                        <ion-option value="G106">G106 Valve Alcoa Jante alu type 70MS07N2 (40)</ion-option>
+                        <ion-option value="G107">G107 Valve TR 413</ion-option>
+                        <ion-option value="G108">G108 Valve TR 414 L</ion-option>
+                        <ion-option value="G109">G109 Valve TR 415</ion-option>
+                        <ion-option value="G127">G127 Valve REF.1294 (445-385-18 X22.5)</ion-option>
+                        <ion-option value="G128">G128 Valve GC</ion-option>
+                        <ion-option value="G130">G130 Vave REF.1486 - REF.1680 (11-12)</ion-option>
+                        <ion-option value="G132">G132 Valve GSW35 AIR&EAU</ion-option>
+                        <ion-option value="G133">G133 Valve 2123 (courtes 13 X 22.5)</ion-option>
+                        <ion-option value="G135">G135 Valve REF. 4441 (445/65X 22.5)</ion-option>
+                        <ion-option value="G136">G136 Valve REF 1151 (445/65X 22.5)</ion-option>
+                    </ion-select>
+                    <ion-input mode="wp" formControlName="quantite" class="right" type="text" placeholder="Quantité"></ion-input>
+                </ion-item>
+            </div>
             <ion-item mode="wp">
                 <ion-input mode="wp" class="readonly" type="text" readonly value="Forfait véhiculé"></ion-input>
                 <ion-input mode="wp" formControlName="forfait" class="right" type="text" placeholder="Quantité"></ion-input>
             </ion-item>
-            <!--<ion-item mode="wp">
-                <ion-input mode="wp" class="readonly" type="text" readonly value="Fourniture"></ion-input>
-                <ion-input mode="wp" formControlName="fourniture" class="right" type="text" placeholder="Quantité"></ion-input>
-            </ion-item>-->
 
+            <!--FOURNITURE-->
 
             <div formArrayName="fournitures">
-                <ion-item mode="wp" *ngFor="let fourniture of ficheForm.controls.fournitures.controls; let i=index" formGroupName="{{i}}">
-                    <ion-select class="selector" formControlName="nom">
-                        <ion-option selected disabled value="fourniture">Fourniture</ion-option>
-                        <ion-option value="C21">C21 Démontage / Remontage PL</ion-option>
-                        <ion-option value="C24">C24 Dépose / Repose PL</ion-option>
-                        <ion-option value="C26">C26 Réparation à froid</ion-option>
-                        <ion-option value="C29">C29 Retaillage</ion-option>
-                        <ion-option value="C30">C30 Equilibrage petit PL</ion-option>
-                        <ion-option value="C31">C31 Equilibre grand PL</ion-option>
-                        <ion-option value="C33">C33 Forfait véhicule</ion-option>
-                        <ion-option value="C40">C40 Heure d’attente</ion-option>
-                        <ion-option value="C57">C57 Déplacement astreinte</ion-option>
-                        <ion-option value="C61">C61 Gonflage mousse polyurethane (kgs)</ion-option>
-                        <ion-option value="G200">G200 Rallonge 1197</ion-option>
-                        <ion-option value="G201">G201 Rallonge 382405 (Blanche rigide CTTE)</ion-option>
-                        <ion-option value="G205">G205 Rallonge R210 (souple)</ion-option>
-                        <ion-option value="G209">G209 Rallonge coudee W353</ion-option>
-                        <ion-option value="G210">G210 Rallonge V615 (rigide)</ion-option>
-                        <ion-option value="G281">G281 Gonflage mousse polyurethane (kg)</ion-option>
-                        <ion-option value="G290">G290 Litre produit anti-crevaison</ion-option>
-                        <ion-option value="G296">G296 Jante neuve 445/45 X 19.5(REF 6.00 X 19.5</ion-option>
-                        <ion-option value="G297">G297 Jante neuve 215/75 X 17.5 (REF 6.00 X 17.5)</ion-option>
-                        <ion-option value="G298">G298 Jante neuve 385/65 X 22.5 (REF 400 X 22.5)</ion-option>
-                        <ion-option value="G299">G299 Jante neuve 235/245/ 75 X 17.5 (REF 6.75 X 17.5)</ion-option>
-                        <ion-option value="G300">G300 Jante neuve 445/65 X 22.5 (REF1400 X 22.5)</ion-option>
-                        <ion-option value="G301">G301 Jante neuve 13 X 22.5 - 315/80 X 22.5 (REF 9.00)</ion-option>
-                        <ion-option value="G309">G309 Jante neuve 12 X 22.5 (8.25 x 22.5)</ion-option>
-                        <ion-option value="G310">G310 Jante neuve 11 X 22.5 (7.50 x 22.5)</ion-option>
-                        <ion-option value="G350">G350 Joint tyran</ion-option>
-                        <ion-option value="G353">G353 Joint cornifere REF 1528</ion-option>
-                        <ion-option value="G355">G355 Joint sulla REF.1437 OR 325</ion-option>
-                        <ion-option value="G356">G356 Joint heuro REF . 1438 OR225</ion-option>
-                        <ion-option value="G360">G360 Flap 200-20</ion-option>
-                        <ion-option value="V401">V401 CH. 145/155 X 12 - 5/70 X12</ion-option>
-                        <ion-option value="V410">V410 Chambre à air 10 X 16.5</ion-option>
-                        <ion-option value="V411">V411 Chambre à air 11.5/80 X 15.3</ion-option>
-                        <ion-option value="V412">V412 Chambre à air 205/6.50/700 X 16</ion-option>
-                        <ion-option value="V413">V413 Chambre à air 12 X 16.5</ion-option>
-                        <ion-option value="V417">V417 Chambre à air 600 X 9</ion-option>
-                        <ion-option value="V420">V420 Chambre à air 700 X 12</ion-option>
-                        <ion-option value="V422">V422 C. 7.50/8.25 X 15 - 8.15 X 15</ion-option>
-                        <ion-option value="V425">V425 Chambre à air 10.5 X 18</ion-option>
-                        <ion-option value="V426">V426 Chambre à air 12.5/80 X18sss</ion-option>
-                        <ion-option value="V427">V427 Chambre à air 18 X 19.5</ion-option>
-                        <ion-option value="V428">V428 Chambre à air 12.5 X 20</ion-option>
-                        <ion-option value="V429">V429 Chambre à air 1000 X 20</ion-option>
-                        <ion-option value="V430">V430 Chambre à air 1200 X 20</ion-option>
-                        <ion-option value="V431">V431 Chambre à air 14.5 X 20</ion-option>
-                        <ion-option value="V432">V432 Chambre à air 23/8.50 X 12</ion-option>
-                        <ion-option value="V435">V435 C. 14.9/ 15.5/80 X24 - 400/440/80 X 24</ion-option>
-                        <ion-option value="V438">V438 Chambre à air 600/40 X 22.5</ion-option>
-                        <ion-option value="V443">V443 Chambre à air 16/70 X 20 - 405/70 X20</ion-option>
-
-                    </ion-select>
-                    <ion-input mode="wp" class="right" type="text" formControlName="quantite" placeholder="Quantité"></ion-input>
-                </ion-item>
-                <ion-item mode="wp">
-                    <ion-icon name="md-add-circle" (click)="addFourniture()" color="primary" style="font-size:5rem;"></ion-icon>
-                </ion-item>
+                <!--Pour chaque tableau fourniture-->
+                <div *ngFor="let fourniture of ficheForm.controls.fournitures.controls; let i=index" formGroupName="{{i}}">
+                    <ion-item-sliding>
+                        <ion-item mode="wp">
+                            <ion-input mode="wp" (keyup)="getItems($event, i)" formControlName="nom" class="" type="text" placeholder="Fourniture"></ion-input>
+                            <ion-input mode="wp" class="right" type="text" formControlName="quantite" placeholder="Quantité"></ion-input>
+                        </ion-item>
+                        <ion-item-options side="left">
+                            <button ion-button  color="danger" (click)="deleteFourni(i)">
+                                <ion-icon name="trash"></ion-icon>
+                                Supprimer
+                            </button>
+                        </ion-item-options>
+                    </ion-item-sliding>
+                    <ion-list *ngIf="i == [(numberForm)]">
+                        <!--i correspond a l index de la ligne ; s'affiche en dessous du bon champs de recherche-->
+                        <ion-item *ngFor="let fourniture of fournituresList;  let x=index">
+                            <div *ngIf="x<2 " (click)="insertInput(fourniture, i)">
+                                {{fourniture}}
+                            </div>
+                        </ion-item>
+                    </ion-list>
+                </div>
             </div>
+
+
+
+            <ion-item mode="wp">
+                <ion-icon name="md-add-circle" (click)="addFourniture()" color="primary" style="font-size:5rem;"></ion-icon>
+            </ion-item>
+
+            <ion-item mode="wp">
+                <ion-input mode="wp" class="readonly" type="text" readonly value="Forfait véhiculé"></ion-input>
+                <ion-input mode="wp" formControlName="forfait" class="right" type="text" placeholder="Quantité"></ion-input>
+            </ion-item>
+
+
+
+
             <ion-item>
                 <hr>
             </ion-item>

@@ -16,14 +16,14 @@ export class Fiche {
         reparation:string;
         chaair:string;
         retaillage:string;
-        emplatre:string;
-        valve:string;
+        emplatre:any;
+        valve:any;
         forfait:string;
-        fourniture:string;
         observation:string;
         numeroPneu:string;
         pression:string;
         serrage:string;
+        fournitures:Array<any>;
         signatureClient:string;
         signatureResponsable:string;
         aEnvoyer: boolean;

@@ -28,7 +28,9 @@ export class DetailPage  implements OnInit {
   
   getFiche(id:number){  
     this._ficheService.getFiche(id).then(
-       (fiche) => this.fiche = fiche);
+       (fiche) =>
+       this.fiche = fiche
+       );
    }
 
 

@@ -32,6 +32,7 @@ detail {
     }
     #bloc-bottom {
      	display: flex;
+        display : -webkit-flex;
      	justify-content: space-around;
      	margin-bottom: 50px;
     }

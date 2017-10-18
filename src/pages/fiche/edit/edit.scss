@@ -26,16 +26,15 @@ edit {
         width: 98%;
         height: 120px;
     }
-
     .label-ios {
-       margin: 11px 8px 11px 8px;
+        margin: 11px 8px 11px 8px;
     }
     #bloc-bottom {
-     	display: flex;
-     	justify-content: space-around;
-     	margin-bottom: 50px;
+        display: flex;
+        display : -webkit-flex;
+        justify-content: space-around;
+        margin-bottom: 50px;
     }
-
     canvas {
         border: 1px solid black;
     }
@@ -64,4 +63,31 @@ edit {
         top:inherit;
         left:inherit;
     }
+
+
+    .selector{
+        color:white;
+        background-color: #B9AA97;
+        border: 1px solid #B9AA97;
+        height: 47px;
+        width: 297px;
+        margin: 13px 8px 13px 8px;
+    }
+    .selectorTrio{
+
+        margin: 13px 120px  13px 8px;
+        width: 200px;
+        border: 1px solid #B9AA97;
+        height: 47px;
+        display:flex;
+        display : -webkit-flex
+    }
+
+
+    .select-placeholder{
+        color:white!important;
+    }
+
+
 }
+

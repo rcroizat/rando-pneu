@@ -3,86 +3,165 @@
         <button ion-button color="secondary" menuToggle class="button-menu">
             <ion-icon class="large-button" name="menu"></ion-icon>
         </button>
-       <ion-title> <img class="papatte" src="assets/img/patte.png" align="middle" alt=""></ion-title>
+        <ion-title> <img class="papatte" src="assets/img/patte.png" align="middle" alt=""></ion-title>
     </ion-navbar>
 </ion-header>
-<ion-content mode="wp" >
-    <form [formGroup]="ficheForm"  *ngIf="ficheForm" (ngSubmit)="submit()" id="form">
-        <ion-list mode="wp" >
-         <ion-item mode="wp">
-                <ion-datetime mode="wp"  formControlName="arrive"  placeholder="Heure d'arrivée chez le client" cancelText="Annuler" doneText="Valider" displayFormat="HH:mm" pickerFormat="HH:mm"></ion-datetime>
-                <ion-datetime mode="wp" formControlName="depart"  placeholder="Heure de départ" cancelText="Annuler" doneText="Valider" displayFormat="HH:mm" pickerFormat="HH:mm"></ion-datetime>
+<ion-content mode="wp">
+    <form [formGroup]="ficheForm" *ngIf="ficheForm" (ngSubmit)="submit()" id="form">
+        <ion-list mode="wp">
+            <ion-item mode="wp">
+
+                <ion-datetime mode="wp" formControlName="arrive" placeholder="Heure d'arrivée chez le client" cancelText="Annuler" doneText="Valider"
+                    displayFormat="HH:mm" pickerFormat="HH:mm"></ion-datetime>
+                <ion-datetime mode="wp" formControlName="depart" placeholder="Heure de départ" cancelText="Annuler" doneText="Valider" displayFormat="HH:mm"
+                    pickerFormat="HH:mm"></ion-datetime>
             </ion-item>
             <ion-item mode="wp">
-                <ion-input mode="wp"   formControlName="temps" type="text" placeholder="Temps passée" ></ion-input>
-                <ion-input mode="wp" formControlName="positionRoue" class="right" type="text" placeholder="Position de la roue" ></ion-input>
+                <ion-input mode="wp" formControlName="temps" type="text" placeholder="Temps passée"></ion-input>
+                <ion-input mode="wp" formControlName="positionRoue" class="right" type="text" placeholder="Position de la roue"></ion-input>
             </ion-item>
             <ion-item mode="wp">
-                <ion-input mode="wp"  formControlName="chiffrage" type="text" placeholder="Chiffrage" ></ion-input>
+                <ion-input mode="wp" formControlName="chiffrage" type="text" placeholder="Chiffrage"></ion-input>
             </ion-item>
             <ion-item mode="wp">
-                <ion-input mode="wp" formControlName="nomClient" class="solo" type="text" placeholder="Nom client" ></ion-input>
-            </ion-item>
-            <hr>
-            <ion-item mode="wp">
-                <ion-input mode="wp" formControlName="nomAdresse" class="solo" type="text" placeholder="Nom et adresse" ></ion-input>
-            </ion-item>
-            <ion-item mode="wp">
-                <ion-input mode="wp" formControlName="dimension" class="trio" type="text" placeholder="Dimension" ></ion-input>
-                <ion-input mode="wp" formControlName="nvh"  class="trio" type="text" placeholder="NVH"></ion-input>
-                <ion-input mode="wp" formControlName="kmCompteur" class="trio" type="text" placeholder="Kilomètres compteur" ></ion-input>
+                <ion-input mode="wp" formControlName="nomClient" class="solo" type="text" placeholder="Nom client"></ion-input>
             </ion-item>
             <hr>
             <ion-item mode="wp">
-                <ion-input mode="wp"  class="readonly" type="text" readonly value="Démontage/remontage" ></ion-input>
-                <ion-input mode="wp" formControlName="demontage" class="right" type="text" placeholder="Quantité" ></ion-input>
+                <ion-input mode="wp" formControlName="nomAdresse" class="solo" type="text" placeholder="Nom et adresse"></ion-input>
             </ion-item>
             <ion-item mode="wp">
-                <ion-input mode="wp"  class="readonly" type="text" readonly value="Dépose/repose" ></ion-input>
-                <ion-input mode="wp"  formControlName="depose" class="right" type="text" placeholder="Quantité" ></ion-input>
+                <ion-select class="selectorTrio  trio" formControlName="dimension" placeholder="Dimension">
+                    <ion-option [selected]="fiche.dimension === 'P2012'" value="P2012">P2012 PNEU 10 X 16 NHS</ion-option>
+                    <ion-option [selected]="fiche.dimension === 'P2919'" value="P2919">P2919 PNEU 13 X 22.5 HANKOOK DM09 RR:D A:C 72DB</ion-option>
+                    <ion-option [selected]="fiche.dimension === 'P2920'" value="P2920">P2920 PNEU 13 X 22.5 HANKOOK AM06 R:D A:C 72DB</ion-option>
+                    <ion-option [selected]="fiche.dimension === 'P2938'" value="P2938">P2938 PNEU 385/65 X 22.5 HANKOOK .AM15 RR:D A:C</ion-option>
+                    <ion-option [selected]="fiche.dimension === 'P3316'" value="P3316">P3316 PNEU 315/70 X 22.5 CONTI.HYBRID HS3 154/15</ion-option>
+                    <ion-option [selected]="fiche.dimension === 'P3318'" value="P3318">P3318 PNEU 315/80 X 22.5 CONTINENTAL HYBRID HS3</ion-option>
+                    <ion-option [selected]="fiche.dimension === 'P3320'" value="P3320">P3320 PNEU 385/55 X 22.5 CONTINENTAL HYBRID HT3</ion-option>
+                    <ion-option [selected]="fiche.dimension === 'P3337'" value="P3337">P3337 PNEU 385/55 22.5 CONTINENTAL CHT3 160K</ion-option>
+                </ion-select>
+                <ion-input mode="wp" formControlName="nvh" class="trio" type="text" placeholder="NVH"></ion-input>
+                <ion-input mode="wp" formControlName="kmCompteur" class="trio" type="text" placeholder="Kilomètres compteur"></ion-input>
+            </ion-item>
+            <hr>
+            <ion-item mode="wp">
+                <ion-input mode="wp" class="readonly" type="text" readonly value="Démontage/remontage"></ion-input>
+
+                <ion-input mode="wp" formControlName="demontage" class="right" type="text" placeholder="Quantité"></ion-input>
             </ion-item>
             <ion-item mode="wp">
-                <ion-input mode="wp" class="readonly" type="text" readonly value="Réparation/Tubeless" ></ion-input>
-                <ion-input mode="wp"  formControlName="reparation" class="right" type="text" placeholder="Quantité" ></ion-input>
+                <ion-input mode="wp" class="readonly" type="text" readonly value="Dépose/repose"></ion-input>
+                <ion-input mode="wp" formControlName="depose" class="right" type="text" placeholder="Quantité"></ion-input>
+            </ion-item>
+            <ion-item mode="wp">
+                <ion-input mode="wp" class="readonly" type="text" readonly value="Réparation/Tubeless"></ion-input>
+                <ion-input mode="wp" formControlName="reparation" class="right" type="text" placeholder="Quantité"></ion-input>
             </ion-item>
             <ion-item mode="wp">
                 <ion-input mode="wp" class="readonly" type="text" readonly value="Réparation CH.AAIR"></ion-input>
-                <ion-input mode="wp"  formControlName="chaair" class="right" type="text" placeholder="Quantité" ></ion-input>
+                <ion-input mode="wp" formControlName="chaair" class="right" type="text" placeholder="Quantité"></ion-input>
             </ion-item>
             <ion-item mode="wp">
                 <ion-input mode="wp" class="readonly" type="text" readonly value="Retaillage"></ion-input>
-                <ion-input mode="wp"  formControlName="retaillage" class="right" type="text" placeholder="Quantité" ></ion-input>
+                <ion-input mode="wp" formControlName="retaillage" class="right" type="text" placeholder="Quantité"></ion-input>
             </ion-item>
+            <div formGroupName="emplatre">
+                <ion-item mode="wp">
+                    <ion-select class="selector" formControlName="nom"  placeholder="Emplatre">
+                        <ion-option [selected]="fiche.emplatre.nom === 'G150'" value="G150">G150 Emplatre 110 TL</ion-option>
+                        <ion-option [selected]="fiche.emplatre.nom === 'G152'" value="G152">G152 Emplatre 120 TL</ion-option>
+                        <ion-option [selected]="fiche.emplatre.nom === 'G153'" value="G153">G153 Emplatre 125 TL</ion-option>
+                        <ion-option [selected]="fiche.emplatre.nom === 'G154'" value="G154">G154 Emplatre 135 TL</ion-option>
+                        <ion-option [selected]="fiche.emplatre.nom === 'G155'" value="G155">G155 Emplatre 140 TL</ion-option>
+                        <ion-option [selected]="fiche.emplatre.nom === 'G156'" value="G156">G156 Emplatre 142 TL</ion-option>
+                        <ion-option [selected]="fiche.emplatre.nom === 'G157'" value="G157">G157 Emplatre 144 TL</ion-option>
+                        <ion-option [selected]="fiche.emplatre.nom === 'G158'" value="G158">G158 Emplatre 145 TL</ion-option>
+                        <ion-option [selected]="fiche.emplatre.nom === 'G159'" value="G159">G159 Emplatre 146 TL</ion-option>
+                        <ion-option [selected]="fiche.emplatre.nom === 'G169'" value="G169">G169 Emplatre PN02L</ion-option>
+                        <ion-option [selected]="fiche.emplatre.nom === 'G170'" value="G170">G170 Emplatre PN03</ion-option>
+                        <ion-option [selected]="fiche.emplatre.nom === 'G171'" value="G171">G171 Emplatre PN04</ion-option>
+                        <ion-option [selected]="fiche.emplatre.nom === 'G172'" value="G172">G172 Emplatre PN05</ion-option>
+                        <ion-option [selected]="fiche.emplatre.nom === 'G173'" value="G173">G173 Emplatre PN06</ion-option>
+                    </ion-select>
+
+                    <ion-input mode="wp" formControlName="quantite" class="right" type="text" placeholder="Quantité"></ion-input>
+                </ion-item>
+            </div>
+
+            <div formGroupName="valve">
+                <ion-item mode="wp">
+                    <ion-select class="selector" formControlName="nom" placeholder="Valve"> 
+                        <ion-option [selected]="fiche.valve.nom === 'G106'" value="G106">G106 Valve Alcoa Jante alu type 70MS07N2 (40)</ion-option>
+                        <ion-option [selected]="fiche.valve.nom === 'G107'" value="G107">G107 Valve TR 413</ion-option>
+                        <ion-option [selected]="fiche.valve.nom === 'G108'" value="G108">G108 Valve TR 414 L</ion-option>
+                        <ion-option [selected]="fiche.valve.nom === 'G109'" value="G109">G109 Valve TR 415</ion-option>
+                        <ion-option [selected]="fiche.valve.nom === 'G127'" value="G127">G127 Valve REF.1294 (445-385-18 X22.5)</ion-option>
+                        <ion-option [selected]="fiche.valve.nom === 'G128'" value="G128">G128 Valve GC</ion-option>
+                        <ion-option [selected]="fiche.valve.nom === 'G130'" value="G130">G130 Vave REF.1486 - REF.1680 (11-12)</ion-option>
+                        <ion-option [selected]="fiche.valve.nom === 'G132'" value="G132">G132 Valve GSW35 AIR&EAU</ion-option>
+                        <ion-option [selected]="fiche.valve.nom === 'G133'" value="G133">G133 Valve 2123 (courtes 13 X 22.5)</ion-option>
+                        <ion-option [selected]="fiche.valve.nom === 'G135'" value="G135">G135 Valve REF. 4441 (445/65X 22.5)</ion-option>
+                        <ion-option [selected]="fiche.valve.nom === 'G136'" value="G136">G136 Valve REF 1151 (445/65X 22.5)</ion-option>
+                    </ion-select>
+                    <ion-input mode="wp" formControlName="quantite" class="right" type="text" placeholder="Quantité"></ion-input>
+                </ion-item>
+            </div>
             <ion-item mode="wp">
-                <ion-input mode="wp" class="readonly" type="text" readonly  value="Emplatre"></ion-input>
-                <ion-input mode="wp" formControlName="emplatre" class="right" type="text" placeholder="Quantité" ></ion-input>
+                <ion-input mode="wp" class="readonly" type="text" readonly value="Forfait véhiculé"></ion-input>
+                <ion-input mode="wp" formControlName="forfait" class="right" type="text" placeholder="Quantité"></ion-input>
             </ion-item>
+
+            <!--FOURNITURE-->
+
+            <div formArrayName="fournitures">
+                <!--Pour chaque tableau fourniture-->
+                <div *ngFor="let fourniture of ficheForm.controls.fournitures.controls; let i=index" formGroupName="{{i}}">
+                    <ion-item-sliding>
+                        <ion-item mode="wp">
+                            <ion-input mode="wp" (keyup)="getItems($event, i)" formControlName="nom" class="" type="text" placeholder="Fourniture"></ion-input>
+                            <ion-input mode="wp" class="right" type="text" formControlName="quantite" placeholder="Quantité"></ion-input>
+                        </ion-item>
+                        <ion-item-options side="left">
+                            <button ion-button  color="danger" (click)="deleteFourni(i)">
+                                <ion-icon name="trash"></ion-icon>
+                                Supprimer
+                            </button>
+                        </ion-item-options>
+                    </ion-item-sliding>
+                    <ion-list *ngIf="i == [(numberForm)]">
+                        <!--i correspond a l index de la ligne ; s'affiche en dessous du bon champs de recherche-->
+                        <ion-item *ngFor="let fourniture of fournituresList;  let x=index">
+                            <div *ngIf="x<2 " (click)="insertInput(fourniture, i)">
+                                {{fourniture}}
+                            </div>
+                        </ion-item>
+                    </ion-list>
+                </div>
+            </div>
+
+
             <ion-item mode="wp">
-                <ion-input mode="wp" class="readonly" type="text" readonly value="Valve"></ion-input>
-                <ion-input mode="wp"  formControlName="valve" class="right" type="text" placeholder="Quantité" ></ion-input>
+                <ion-icon name="md-add-circle" (click)="addFourniture()" color="primary" style="font-size:5rem;"></ion-icon>
             </ion-item>
+
             <ion-item mode="wp">
-                <ion-input mode="wp" class="readonly" type="text" readonly value="Forfait véhivulé" ></ion-input>
-                <ion-input mode="wp"  formControlName="forfait" class="right" type="text" placeholder="Quantité" ></ion-input>
+                <ion-input mode="wp" class="readonly" type="text" readonly value="Forfait véhiculé"></ion-input>
+                <ion-input mode="wp" formControlName="forfait" class="right" type="text" placeholder="Quantité"></ion-input>
             </ion-item>
-            <ion-item mode="wp">
-                <ion-input mode="wp" class="readonly" type="text" readonly value="Fourniture"></ion-input>
-                <ion-input mode="wp" formControlName="fourniture" class="right" type="text" placeholder="Quantité" ></ion-input>
-            </ion-item>
-            +
             <ion-item>
-            <hr>
+                <hr>
             </ion-item>
             <ion-item mode="wp">
                 <ion-textarea class="textarea" formControlName="observation" placeholder="Observation" mode="wp">
                 </ion-textarea>
             </ion-item>
             <ion-item mode="wp">
-                <ion-input mode="wp"  formControlName="numeroPneu" class="solo" type="text" placeholder="N° pneu monté" ></ion-input>
+                <ion-input mode="wp" class="solo" formControlName="numeroPneu" type="text" placeholder="N° pneu monté"></ion-input>
             </ion-item>
             <ion-item mode="wp">
-                <ion-input mode="wp"  formControlName="pression" type="text" placeholder="Contrôle pression" ></ion-input>
-                <ion-input mode="wp"  formControlName="serrage" class="right"  type="text" placeholder="Contrôle serrage" ></ion-input>
+                <ion-input mode="wp" type="text" formControlName="pression" placeholder="Contrôle pression"></ion-input>
+                <ion-input mode="wp" class="right" formControlName="serrage" type="text" placeholder="Contrôle serrage"></ion-input>
             </ion-item>
             <ion-item mode="wp">
                 Prière de resserer les roues après 25Km, 100Km et ensuite périodiquement
@@ -90,9 +169,9 @@
             <ion-item mode="wp">
                 <div id="bloc-bottom">
                     <div>Signature responsable<br><br>
-                    <img src="{{fiche.signatureResponsable}}"/></div>
+                        <img src="{{fiche.signatureResponsable}}" /></div>
                     <div class="right">Signature client<br><br>
-                    <img src="{{fiche.signatureClient}}"/></div>
+                        <img src="{{fiche.signatureClient}}" /></div>
                 </div>
             </ion-item>
             <ion-item mode="wp">
@@ -100,6 +179,6 @@
                 </button>
             </ion-item>
         </ion-list>
-        </form>
+    </form>
     <div *ngIf="msgErreur">{{msgErreur}}</div>
 </ion-content>

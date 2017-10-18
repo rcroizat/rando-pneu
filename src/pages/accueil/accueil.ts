@@ -25,16 +25,16 @@ export class AccueilPage {
 
   mesFiches(){
     this.navCtrl.setRoot(FichePage);
-    this.menu.swipeEnable(true);
+    // this.menu.swipeEnable(true);
   }
 
   reglages(){
     this.navCtrl.setRoot(ReglagePage);
-    this.menu.swipeEnable(true);
+    // this.menu.swipeEnable(true);
   }
   
   nouvelleFiche(){
     this.navCtrl.setRoot(NouvelleFichePage);
-    this.menu.swipeEnable(true);
+    // this.menu.swipeEnable(true);
   }
 }

@@ -3,100 +3,100 @@
         <button ion-button color="secondary" menuToggle class="button-menu">
             <ion-icon class="large-button" name="menu"></ion-icon>
         </button>
-       <ion-title> <img class="papatte" src="assets/img/patte.png" align="middle" alt=""></ion-title>
+        <ion-title> <img class="papatte" src="assets/img/patte.png" align="middle" alt=""></ion-title>
     </ion-navbar>
 </ion-header>
-<ion-content mode="wp" >
-        <ion-list mode="wp" *ngIf="fiche">
-            <ion-item mode="wp">
-                <ion-input mode="wp"  readonly placeholder="Heure d'arrivée chez le client" value="{{fiche.arrive}}"></ion-input>
-                <ion-input mode="wp"  readonly class="right" type="text" placeholder="Heure de départ" value="{{fiche.depart}}"></ion-input>
-            </ion-item>
-            <ion-item mode="wp">
-                <ion-input mode="wp"  readonly type="text" placeholder="Temps passée" value="{{fiche.temps}}"></ion-input>
-                <ion-input mode="wp"  readonly class="right" type="text" placeholder="Position de la roue" value="{{fiche.positionRoue}}"></ion-input>
-            </ion-item>
-            <ion-item mode="wp">
-                <ion-input mode="wp"  readonly type="text" placeholder="Chiffrage" value="{{fiche.chiffrage}}"></ion-input>
-            </ion-item>
-            <ion-item mode="wp">
-                <ion-input mode="wp" readonly class="solo" type="text" placeholder="Nom client" value="{{fiche.nomClient}}"></ion-input>
-            </ion-item>
+<ion-content mode="wp">
+    <ion-list mode="wp" *ngIf="fiche">
+        <ion-item mode="wp">
+            <ion-input mode="wp" readonly type="text" placeholder="Heure d'arrivée chez le client" value="{{fiche.arrive}}"></ion-input>
+            <ion-input mode="wp" readonly class="right" type="text" placeholder="Heure de départ" value="{{fiche.depart}}"></ion-input>
+        </ion-item>
+        <ion-item mode="wp">
+            <ion-input mode="wp" readonly type="text" placeholder="Temps passée" value="{{fiche.temps}}"></ion-input>
+            <ion-input mode="wp" readonly class="right" type="text" placeholder="Position de la roue" value="{{fiche.positionRoue}}"></ion-input>
+        </ion-item>
+        <ion-item mode="wp">
+            <ion-input mode="wp" readonly type="text" placeholder="Chiffrage" value="{{fiche.chiffrage}}"></ion-input>
+        </ion-item>
+        <ion-item mode="wp">
+            <ion-input mode="wp" readonly class="solo" type="text" placeholder="Nom client" value="{{fiche.nomClient}}"></ion-input>
+        </ion-item>
+        <hr>
+        <ion-item mode="wp">
+            <ion-input mode="wp" readonly class="solo" type="text" placeholder="Nom et adresse" value="{{fiche.nomAdresse}}"></ion-input>
+        </ion-item>
+
+        <ion-item mode="wp">
+            <ion-input mode="wp" readonly class="trio" type="text" placeholder="Valve" value="{{fiche.dimension}}"></ion-input>
+            <ion-input mode="wp" readonly class="trio" type="text" placeholder="NVH" value="{{fiche.nvh}}"></ion-input>
+            <ion-input mode="wp" readonly class="trio" type="text" placeholder="Kilomètres compteur" value="{{fiche.kmCompteur}}"></ion-input>
+        </ion-item>
+        <hr>
+        <ion-item mode="wp">
+            <ion-input mode="wp" class="readonly" type="text" readonly value="Démontage/remontage"></ion-input>
+            <ion-input mode="wp" readonly class="right" type="text" placeholder="Quantité" value="{{fiche.demontage}}"></ion-input>
+        </ion-item>
+        <ion-item mode="wp">
+            <ion-input mode="wp" class="readonly" type="text" readonly value="Dépose/repose"></ion-input>
+            <ion-input mode="wp" readonly class="right" type="text" placeholder="Quantité" value="{{fiche.depose}}"></ion-input>
+        </ion-item>
+        <ion-item mode="wp">
+            <ion-input mode="wp" class="readonly" type="text" readonly value="Réparation/Tubeless"></ion-input>
+            <ion-input mode="wp" readonly class="right" type="text" placeholder="Quantité" value="{{fiche.reparation}}"></ion-input>
+        </ion-item>
+        <ion-item mode="wp">
+            <ion-input mode="wp" class="readonly" type="text" readonly value="Réparation CH.AAIR"></ion-input>
+            <ion-input mode="wp" readonly class="right" type="text" placeholder="Quantité" value="{{fiche.chaair}}"></ion-input>
+        </ion-item>
+        <ion-item mode="wp">
+            <ion-input mode="wp" class="readonly" type="text" readonly value="Retaillage"></ion-input>
+            <ion-input mode="wp" readonly class="right" type="text" placeholder="Quantité" value="{{fiche.retaillage}}"></ion-input>
+        </ion-item>
+        <ion-item mode="wp">
+            <ion-input mode="wp" class="readonly" type="text" value="{{fiche.emplatre.nom}}" readonly></ion-input>
+            <ion-input mode="wp" readonly class="right" type="text" placeholder="Quantité" value="{{fiche.emplatre.quantite}}"></ion-input>
+        </ion-item>
+        <ion-item mode="wp">
+            <ion-input mode="wp" class="readonly" type="text" readonly value="{{fiche.valve.nom}}"></ion-input>
+            <ion-input mode="wp" readonly class="right" type="text" placeholder="Quantité" value="{{fiche.valve.quantite}}"></ion-input>
+        </ion-item>
+        <ion-item mode="wp">
+            <ion-input mode="wp" class="readonly" type="text" readonly value="Forfait véhiculé"></ion-input>
+            <ion-input mode="wp" readonly class="right" type="text" placeholder="Quantité" value="{{fiche.forfait}}"></ion-input>
+        </ion-item>
+        <ion-item mode="wp" *ngFor="let fourni of fiche.fournitures">
+            <ion-input mode="wp" class="readonly" type="text" readonly value="{{fourni.nom}}"></ion-input>
+            <ion-input mode="wp" readonly class="right" type="text" placeholder="Quantité" value="{{fourni.quantite}}"></ion-input>
+        </ion-item>
+        <ion-item>
             <hr>
-            <ion-item mode="wp">
-                <ion-input mode="wp"  readonly class="solo" type="text" placeholder="Nom et adresse" value="{{fiche.nomAdresse}}"></ion-input>
-            </ion-item>
-            <ion-item mode="wp">
-                <ion-input mode="wp"  readonly class="trio" type="text" placeholder="Dimension" value="{{fiche.dimension}}"></ion-input>
-                <ion-input mode="wp" readonly class="trio" type="text" placeholder="NVH" value="{{fiche.nvh}}"></ion-input>
-                <ion-input mode="wp"  readonly class="trio" type="text" placeholder="Kilomètres compteur" value="{{fiche.kmCompteur}}"></ion-input>
-            </ion-item>
-            <hr>
-            <ion-item mode="wp">
-                <ion-input mode="wp"  class="readonly" type="text" readonly value="Démontage/remontage" ></ion-input>
-                <ion-input mode="wp" readonly class="right" type="text" placeholder="Quantité" value="{{fiche.demontage}}"></ion-input>
-            </ion-item>
-            <ion-item mode="wp">
-                <ion-input mode="wp"  class="readonly" type="text" readonly value="Dépose/repose" ></ion-input>
-                <ion-input mode="wp"  readonly class="right" type="text" placeholder="Quantité" value="{{fiche.depose}}"></ion-input>
-            </ion-item>
-            <ion-item mode="wp">
-                <ion-input mode="wp" class="readonly" type="text" readonly value="Réparation/Tubeless" ></ion-input>
-                <ion-input mode="wp" readonly class="right" type="text" placeholder="Quantité" value="{{fiche.reparation}}"></ion-input>
-            </ion-item>
-            <ion-item mode="wp">
-                <ion-input mode="wp" class="readonly" type="text" readonly value="Réparation CH.AAIR"></ion-input>
-                <ion-input mode="wp" readonly class="right" type="text" placeholder="Quantité" value="{{fiche.chaair}}"></ion-input>
-            </ion-item>
-            <ion-item mode="wp">
-                <ion-input mode="wp" class="readonly" type="text" readonly value="Retaillage"></ion-input>
-                <ion-input mode="wp"  readonly class="right" type="text" placeholder="Quantité" value="{{fiche.retaillage}}"></ion-input>
-            </ion-item>
-            <ion-item mode="wp">
-                <ion-input mode="wp" class="readonly" type="text" readonly></ion-input>
-                <ion-input mode="wp" readonly class="right" type="text" placeholder="Quantité" value="{{fiche.emplatre}}"></ion-input>
-            </ion-item>
-            <ion-item mode="wp">
-                <ion-input mode="wp" class="readonly" type="text" readonly value="Valve"></ion-input>
-                <ion-input mode="wp" readonly class="right" type="text" placeholder="Quantité" value="{{fiche.valve}}"></ion-input>
-            </ion-item>
-            <ion-item mode="wp">
-                <ion-input mode="wp" class="readonly" type="text" readonly value="Forfait véhivulé" ></ion-input>
-                <ion-input mode="wp" readonly class="right" type="text" placeholder="Quantité" value="{{fiche.forfait}}"></ion-input>
-            </ion-item>
-            <ion-item mode="wp">
-                <ion-input mode="wp" class="readonly" type="text" readonly value="Fourniture"></ion-input>
-                <ion-input mode="wp"  readonly class="right" type="text" placeholder="Quantité" value="{{fiche.fourniture}}"></ion-input>
-            </ion-item>
-            +
-            <ion-item>
-            <hr>
-            </ion-item>
-            <ion-item mode="wp">
-                <ion-textarea class="textarea" readonly placeholder="Observation" mode="wp" value="{{fiche.observation}}">>
-                </ion-textarea>
-            </ion-item>
-            <ion-item mode="wp">
-                <ion-input mode="wp" class="solo" readonly type="text" placeholder="N° pneu monté" value="{{fiche.numeroPneu}}"></ion-input>
-            </ion-item>
-            <ion-item mode="wp">
-                <ion-input mode="wp" type="text" readonly placeholder="Contrôle pression" value="{{fiche.pression}}"></ion-input>
-                <ion-input mode="wp" class="right"  readonly type="text" placeholder="Contrôle serrage" value="{{fiche.serrage}}"></ion-input>
-            </ion-item>
-            <ion-item mode="wp">
-                Prière de resserer les roues après 25Km, 100Km et ensuite périodiquement
-            </ion-item>
-            <ion-item mode="wp">
-                <div id="bloc-bottom">
-                    <div>Signature responsable<br><br>
-                    <img src="{{fiche.signatureResponsable}}"/></div>
-                    <div class="right">Signature client<br><br>
-                    <img src="{{fiche.signatureClient}}"/></div>
-                </div>
-            </ion-item>
-            <ion-item mode="wp">
-                <button mode="wp" ion-button large type="submit" (click)="send($event, fiche)">Envoyer
+        </ion-item>
+        <ion-item mode="wp">
+            <ion-textarea class="textarea" readonly placeholder="Observation" mode="wp" value="{{fiche.observation}}">>
+            </ion-textarea>
+        </ion-item>
+        <ion-item mode="wp">
+            <ion-input mode="wp" class="solo" readonly type="text" placeholder="N° pneu monté" value="{{fiche.numeroPneu}}"></ion-input>
+        </ion-item>
+        <ion-item mode="wp">
+            <ion-input mode="wp" type="text" readonly placeholder="Contrôle pression" value="{{fiche.pression}}"></ion-input>
+            <ion-input mode="wp" class="right" readonly type="text" placeholder="Contrôle serrage" value="{{fiche.serrage}}"></ion-input>
+        </ion-item>
+        <ion-item mode="wp">
+            Prière de resserer les roues après 25Km, 100Km et ensuite périodiquement
+        </ion-item>
+        <ion-item mode="wp">
+            <div id="bloc-bottom">
+                <div>Signature responsable<br><br>
+                    <img src="{{fiche.signatureResponsable}}" /></div>
+                <div class="right">Signature client<br><br>
+                    <img src="{{fiche.signatureClient}}" /></div>
+            </div>
+        </ion-item>
+        <ion-item mode="wp">
+            <button mode="wp" ion-button large type="submit" (click)="send($event, fiche)">Envoyer
                 </button>
-            </ion-item>
-        </ion-list>
+        </ion-item>
+    </ion-list>
 </ion-content>
