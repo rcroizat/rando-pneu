@@ -1,39 +1,111 @@
-detail {
+detail{
+
+
+    .grid{
+         padding: 5px 44px 5px 44px;
+    }
+
+    .item-wp{
+        padding-left: 0px;
+        margin-top: 15px;
+    }
+    .item-inner{
+        padding-right: 0px!important;
+    }
+
+  
+    .datetime-wp {
+     padding: 0!important;
+    }   
+
+    .datetime-wp .datetime-text {
+        padding:8px;
+        border: 1px solid #B9AA97;
+    }
+    .content-wp hr 
+    {
+        background-color: rgb(185,  170, 151);
+        opacity: 0.8;
+    }
+
+    hr {
+        height:2px;
+    }
+    .label-ios {
+        margin: 11px 8px 11px 8px;
+    }
     .text-input-wp {
+        margin:  0px;
         border: 1px solid #B9AA97;
         height: 47px;
         width: 297px;
     }
     .trio .text-input-wp {
-        margin: 13px 21px 13px 8px;
-        width: 200px;
+         
+    width: 100%;
     }
     .solo .text-input-wp {
-        width: 98%;
+        width: 100%;
     }
     .right .text-input-wp {
         float: right;
-    }
-    .item-wp {
-        padding-left: 44px;
-        padding-right: 44px;
     }
     .readonly input {
         color: white;
         background-color: #B9AA97;
     }
     textarea.text-input-wp {
-        width: 98%;
+        width: 100%;
         height: 120px;
     }
-
-    .label-ios {
-       margin: 11px 8px 11px 8px;
-    }
     #bloc-bottom {
-     	display: flex;
+        display: flex;
         display : -webkit-flex;
-     	justify-content: space-around;
-     	margin-bottom: 50px;
+        justify-content: space-around;
+        margin-bottom: 50px;
+    }
+    canvas {
+        border: 1px solid black;
+    }
+
+    .datetime-text {
+        height: 47px;
+        width: 297px;
+    }
+
+
+    button.item-cover{
+        position: absolute;
+        width: 297px;
+        height: 47px;
+        top:inherit;
+        left:inherit;
+    }
+
+
+    .selector{
+        color:white;
+        background-color: #B9AA97;
+        border: 1px solid #B9AA97;
+        height: 47px;
+        width: 297px;
+        // margin: 13px 8px 13px 8px; PEUT ETRE A REMETTRE
+    }
+    .selectorTrio{
+        width:  100%;
+        border: 1px solid #B9AA97;
+        height: 47px;
+        display:flex;
+        display : -webkit-flex
+    }
+
+    ion-select{
+        max-width: 100%;
+    }
+
+
+    .selector .select-placeholder {
+        color:white!important;
     }
 }
+

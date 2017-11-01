@@ -2,7 +2,10 @@ import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 import { Fiche } from '../data/fiche';
 import { Storage } from '@ionic/storage';
-import { AlertController, LoadingController } from 'ionic-angular';
+
+
+
+import { AlertController, LoadingController, Events } from 'ionic-angular';
 
 import 'rxjs/Rx';
 
@@ -14,7 +17,7 @@ export class FicheService {
 
   fiche: any;
   user: any;
-  constructor(private loadingController: LoadingController, public storage: Storage, public http: Http, public alertCtrl: AlertController) {
+  constructor(public events: Events, private loadingController: LoadingController, public storage: Storage, public http: Http, public alertCtrl: AlertController) {
     this.fiche = [];
     this.storage.get('user').then((user) => {
       this.user = user;
@@ -43,36 +46,17 @@ export class FicheService {
     ).catch(this.handleError);
   }
 
-  sendFicheOld(fiche: Fiche) {
 
+  sendFiche(fiche: Fiche, autosend: number = 0) {
     let ficheClean: any = fiche;
-    ficheClean.nom = 'kaka';
-    ficheClean.prenom = this.user.prenom;
-    return this.http
-      .post(this.url, JSON.stringify(ficheClean), { headers: this.headers })
-      .toPromise()
-      .then(res => res)
-      .catch(this.handleError);
+    // ficheClean.signatureClient = encodeURIComponent(window.btoa(ficheClean.signatureClient));
+    // ficheClean.signatureResponsable = encodeURIComponent(window.btoa(ficheClean.signatureResponsable));
+    ficheClean.nom = this.user.nom || "Sans nom";
+    ficheClean.prenom = this.user.prenom || 'Sans prénom';
 
 
-  }
-  
-  sendFiche(fiche: Fiche) {
-    let ficheClean: any = fiche;
-    ficheClean.nom = this.user.nom ;
-    ficheClean.prenom = this.user.prenom || 'prenom';
 
-
-    /******************************* */
-    /******************************* */
-    /************A RETIRER********** */
-    /******************************* */
-    /******************************* */
-    ficheClean.signatureClient = 0;
-    ficheClean.signatureResponsable = 0;
-
-
-    /************************/ 
+    /************************/
     return this.http
       .post(this.url, JSON.stringify(ficheClean), { headers: this.headers })
       .subscribe(
@@ -85,16 +69,19 @@ export class FicheService {
               {
                 text: 'OK',
                 handler: () => {
-                  // this.nav.setRoot(MensualitesPage);
-                  console.log('heandler ok' + ficheClean);
+
+                  this.events.publish('ficheEnvoyed');
                 }
               }
             ]
           });
-        ficheClean.envoye = true; // on maj le champs envoye a true, et on edit la fiche
-        ficheClean.Aenvoyer = false; // on maj le champs envoye a true, et on edit la fiche
-        this.edit(ficheClean.id, ficheClean);
-        alert.present();
+          ficheClean.envoye = true; // on maj le champs envoye a true, et on edit la fiche
+          ficheClean.Aenvoyer = false; // on maj le champs envoye a true, et on edit la fiche
+
+          if (!autosend) { // si lautosend est activé, la fiche n'est pas engeristrée sur le device, donc on l'edit pas
+            this.edit(ficheClean.id, ficheClean);
+          }
+          alert.present();
         }
       },
       error => {
@@ -105,7 +92,9 @@ export class FicheService {
         });
         ficheClean.aEnvoyer = true; // on maj le champs Aenvoyer a true, et on edit la fiche
         ficheClean.envoye = false;
-        this.edit(ficheClean.id, ficheClean);
+        if (!autosend) { // si lautosend est activé, la fiche n'est pas engeristrée sur le device, donc on l'edit pas
+          this.edit(ficheClean.id, ficheClean);
+        }
         alert.present();
       }
       )
@@ -113,19 +102,16 @@ export class FicheService {
 
   }
 
-  create(fiche: Fiche, signatureResponsable: string, signatureClient: string, callback) {
+  create(fiche: Fiche, callback) {
 
     this.storage.ready().then(() => {
 
       this.storage.get('i').then(val => {
-        let i: number = val + 1;
+        let i: number = val + 1; // set l'id de la fiche
         fiche.id = i;
-        fiche.signatureResponsable = signatureResponsable;
-        fiche.signatureClient = signatureClient;
-        fiche.aEnvoyer = false;
-        fiche.envoye = false;
         this.storage.set('fiche' + i, fiche)
         this.storage.set('i', i);
+
         callback(true);
       })
         .catch(this.handleError);
@@ -136,6 +122,7 @@ export class FicheService {
 
 
   edit(id: number, fiche: Fiche) {
+
     fiche.id = id;
     return this.storage.set('fiche' + id, fiche);
   }

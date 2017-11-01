@@ -1,14 +1,16 @@
 export class Fiche {
 		id:number;
+        nom:string;
+        prenom;
         arrive: string;
         depart: string;
-        duree: string;
         temps: string;
         positionRoue:string;
         chiffrage: any;
         nomClient:string;
         nomAdresse: string;
         dimension:string;
+        dimensionLibre:string;
         nvh:string;
         kmCompteur:string;
         demontage:string;

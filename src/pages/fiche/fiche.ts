@@ -1,6 +1,6 @@
-import { Component , OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-import { NavController } from 'ionic-angular';
+import { NavController, Events } from 'ionic-angular';
 
 import { Fiche } from '../../data/fiche';
 import { FicheService } from '../../services/fiches';
@@ -12,48 +12,52 @@ import { AlertController } from 'ionic-angular';
   selector: 'fiche',
   templateUrl: 'fiche.html'
 })
-export class FichePage  implements OnInit {
-  fiches:Fiche[];
-  user : any;
-  constructor(public alertCtrl: AlertController, public navCtrl: NavController,
-               private _ficheService: FicheService) {
+export class FichePage implements OnInit {
+  fiches: Fiche[];
+  user: any;
 
+  constructor(public alertCtrl: AlertController,
+    public navCtrl: NavController,
+    private _ficheService: FicheService,
+    public events: Events) {
+
+    events.unsubscribe('ficheEnvoyed');
   }
 
   getFiches(): void {
-      this._ficheService.getFiches().then(fiches => this.fiches = fiches );
-   }
+    this._ficheService.getFiches().then(fiches => this.fiches = fiches);
+  }
 
 
   ngOnInit(): void {
-     this.getFiches();
+    this.getFiches();
   }
 
 
-  detailPage(id : number): void {
-    this.navCtrl.push(DetailPage, {id : id});
+  detailPage(id: number): void {
+    this.navCtrl.push(DetailPage, { id: id });
   }
 
 
-  delete(event: Event, id : number): void {
-   event.stopPropagation();
-   this.showConfirm(id);
+  delete(event: Event, id: number): void {
+    event.stopPropagation();
+    this.showConfirm(id);
   }
 
-  edit(event: Event, id:number): void {
-   event.stopPropagation();
-   this.navCtrl.push(EditPage, {id:id});
+  edit(event: Event, id: number): void {
+    event.stopPropagation();
+    this.navCtrl.push(EditPage, { id: id });
   }
 
-  send(event: Event, fiche:Fiche): void {
-   event.stopPropagation();
-   this._ficheService.sendFiche(fiche);
+  send(event: Event, fiche: Fiche): void {
+    event.stopPropagation();
+    this._ficheService.sendFiche(fiche);
   }
 
-/*
-
-     this._ficheService.delete(this.user.id, id).then(() => this.showAlert());*/
-  showConfirm(id : number) {
+  /*
+  
+       this._ficheService.delete(this.user.id, id).then(() => this.showAlert());*/
+  showConfirm(id: number) {
     let confirm = this.alertCtrl.create({
       title: 'Confirmation',
       message: 'Voulez-vous vraiment supprimer cette fiche ?',
@@ -61,8 +65,8 @@ export class FichePage  implements OnInit {
         {
           text: 'Oui',
           handler: () => {
-             this._ficheService.delete(id).then(() => this.removeItem(id));
-           }
+            this._ficheService.delete(id).then(() => this.removeItem(id));
+          }
         },
         {
           text: 'Annuler',
@@ -75,9 +79,9 @@ export class FichePage  implements OnInit {
   }
 
 
-  removeItem(id : number){
-    for(let i = 0; i <  this.fiches.length; i++) {
-      if(this.fiches[i].id == id){
+  removeItem(id: number) {
+    for (let i = 0; i < this.fiches.length; i++) {
+      if (this.fiches[i].id == id) {
         this.fiches.splice(i, 1);
       }
     }

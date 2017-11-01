@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, Events } from 'ionic-angular';
 
 
 import { Validators, FormBuilder, FormGroup, FormArray } from '@angular/forms';
@@ -30,21 +30,25 @@ export class NouvelleFichePage {
 	ficheForm: FormGroup;
 	fiche: any;
 	autosend: boolean;
+	render: boolean = false;
 	fournitures: FormGroup;
 	fournituresList: Array<string>;
 	numberForm: number;
-	constructor(private formBuilder: FormBuilder, private _ficheService: FicheService, private _userService: UserService, public nav: NavController) {
+	constructor(private formBuilder: FormBuilder,
+		private _ficheService: FicheService,
+		private _userService: UserService,
+		public nav: NavController,
+		public events: Events) {
 		this.ficheForm = this.formBuilder.group({
 			arrive: ['', Validators.required],
 			depart: [''],
-			duree: [''],
 			temps: [''],
-			// positionRoue: [''],
 			positionRoue: ['', Validators.required],
 			chiffrage: [''],
 			nomClient: ['', Validators.required],
 			nomAdresse: [''],
 			dimension: [''],
+			dimensionLibre: [''],
 			nvh: [''],
 			kmCompteur: [''],
 			demontage: [''],
@@ -65,9 +69,92 @@ export class NouvelleFichePage {
 			numeroPneu: [''],
 			pression: [''],
 			serrage: [''],
-			fournitures: this.formBuilder.array([this.createItem()])
+			fournitures: this.formBuilder.array([])
 		});
-		this._userService.getState().then(autosend => this.autosend = autosend);
+
+		this._userService.getState().then(autosend => {
+			this.autosend = autosend;
+			this.render = true;
+		}
+		);
+		events.subscribe('ficheEnvoyed', () => { // quand une fiche est envoyée on retourne sur fichePage
+			this.nav.setRoot(FichePage);
+		});
+
+	}
+
+
+
+
+	insertInput(fourniture: string, i: number) {
+		// insert le résultat de la recherche dans le bon champ
+		(<FormGroup>this.ficheForm.controls['fournitures']).controls[i].patchValue({
+			nom: fourniture
+		});
+		this.fournituresList = [];
+	};
+
+
+	getItems(ev: any, i: number) {
+		this.numberForm = i;
+		// Reset items back to all of the items
+		this.initializeItems();
+
+		// set val to the value of the searchbar
+		let val = ev.target.value;
+
+		// if the value is an empty string don't filter the items
+		if (val && val.trim() != '') {
+			this.fournituresList = this.fournituresList.filter((item) => {
+				return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
+			});
+			this.fournituresList = this.fournituresList.slice(0, 3);
+		}
+		else {
+			this.fournituresList = [];
+		};
+	}
+
+
+	createItem(): FormGroup {
+		return this.formBuilder.group({
+			nom: '',
+			quantite: '1'
+		});
+	}
+
+
+	addFourniture() {
+		const control = <FormArray>this.ficheForm.controls['fournitures'];
+		control.push(this.createItem());
+	}
+
+	deleteFourni(i: number) {
+		const control = <FormArray>this.ficheForm.controls['fournitures'];
+		control.removeAt(i);
+	}
+
+	save(): void {
+		this.ficheForm.value.signatureClient = this.signatureClient.getSignature(); // recupere les coordoonnees
+		this.ficheForm.value.signatureResponsable = this.signatureResponsable.getSignature();
+		this.ficheForm.value.aEnvoyer = false;
+		this.ficheForm.value.envoye = false;
+		this.ficheForm.value.emplatre.nom = this.ficheForm.value.emplatre.nom || 'Emplatre'; // on met le nom emplatre par default
+		this.ficheForm.value.valve.nom = this.ficheForm.value.valve.nom || 'Valve'; // on met le nom valve par default
+		if (this.autosend) {
+			this._ficheService.sendFiche(this.ficheForm.value, 1);
+		} else {
+			this._ficheService.create(this.ficheForm.value, (value) => {
+				if (value) {
+					this.callback();
+				}
+			});
+
+		}
+	}
+
+	callback() {
+		this.nav.setRoot(FichePage);
 	}
 
 
@@ -124,70 +211,5 @@ export class NouvelleFichePage {
 			'V443 Chambre à air 16/70 X 20 - 405/70 X20'
 		];
 	}
-
-
-	insertInput(fourniture: string, i: number) {
-		// insert le résultat de la recherche dans le bon champ
-		(<FormGroup>this.ficheForm.controls['fournitures']).controls[i].patchValue({
-			nom: fourniture
-		});
-		this.fournituresList = [];
-	};
-
-
-	getItems(ev: any, i: number) {
-		this.numberForm = i;
-		// Reset items back to all of the items
-		this.initializeItems();
-
-		// set val to the value of the searchbar
-		let val = ev.target.value;
-
-		// if the value is an empty string don't filter the items
-		if (val && val.trim() != '') {
-			this.fournituresList = this.fournituresList.filter((item) => {
-				return (item.toLowerCase().indexOf(val.toLowerCase()) > 0);
-			});
-			this.fournituresList = this.fournituresList.slice(0, 3);
-		}
-		else {
-			this.fournituresList = [];
-		};
-	}
-
-
-	createItem(): FormGroup {
-		return this.formBuilder.group({
-			nom: '',
-			quantite: '1'
-		});
-	}
-
-
-	addFourniture() {
-		const control = <FormArray>this.ficheForm.controls['fournitures'];
-		control.push(this.createItem());
-	}
-
-	deleteFourni(i : number){
-		const control = <FormArray>this.ficheForm.controls['fournitures'];
-		control.removeAt(i);
-	}
-
-	save(): void {
-		let signatureClient = this.signatureClient.getSignature(); // recupere les coordoonnees
-		let signatureResponsable = this.signatureResponsable.getSignature();
-		this._ficheService.create(this.ficheForm.value, signatureResponsable, signatureClient, (value) => {
-			if (value) {
-				this.callback();
-			}
-		});
-	}
-
-	callback() {
-		this.nav.setRoot(FichePage);
-	}
-
-
 
 }

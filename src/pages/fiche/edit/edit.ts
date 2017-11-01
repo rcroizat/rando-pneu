@@ -62,13 +62,13 @@ export class EditPage implements OnInit {
     this.ficheForm = this.formBuilder.group({
       arrive: [this.fiche.arrive, Validators.required],
       depart: [this.fiche.depart],
-      duree: [this.fiche.duree],
       temps: [this.fiche.temps],
       positionRoue: [this.fiche.positionRoue, Validators.required],
       chiffrage: [this.fiche.chiffrage],
       nomClient: [this.fiche.nomClient, Validators.required],
       nomAdresse: [this.fiche.nomAdresse],
       dimension: [this.fiche.dimension],
+      dimensionLibre: [this.fiche.dimensionLibre],
       nvh: [this.fiche.nvh],
       kmCompteur: [this.fiche.kmCompteur],
       demontage: [this.fiche.demontage],
@@ -95,7 +95,9 @@ export class EditPage implements OnInit {
 
 
   submit(): void {
-    this._ficheService.edit(this.id, this.ficheForm.value)
+ this.ficheForm.value.signatureClient = this.fiche.signatureClient;
+ this.ficheForm.value.signatureResponsable = this.fiche.signatureResponsable;
+    this._ficheService.edit(this.id, this.ficheForm.value,)
       .then(() => {
         this.navCtrl.setRoot(FichePage);
       });
@@ -134,7 +136,7 @@ export class EditPage implements OnInit {
     // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
       this.fournituresList = this.fournituresList.filter((item) => {
-        return (item.toLowerCase().indexOf(val.toLowerCase()) > 0);
+        return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
       });
       this.fournituresList = this.fournituresList.slice(0, 3);
     }
