@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.ionicframework.testside610716" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.rando.rando" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Rando-Pneu</name>
     <description>Application Rando-Pneu</description>
-    <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
+    <author email="romain.croizat@gmail.com" href="http://ionicframework.com/">Romain Croizat</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-navigation href="*" />
@@ -35,6 +35,6 @@
     <plugin name="cordova-plugin-console" spec="1.0.5" />
     <plugin name="cordova-plugin-statusbar" spec="2.2.1" />
     <plugin name="cordova-plugin-device" spec="1.1.4" />
-    <plugin name="cordova-plugin-splashscreen" spec="~4.0.1" />
     <plugin name="cordova-sqlite-storage" spec="~2.0.2" />
+    <plugin name="cordova-plugin-splashscreen" spec="~4.0.1" />
 </widget>

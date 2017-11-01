@@ -1,6 +1,8 @@
 {
   "name": "Rando-Pneu",
   "app_id": "ddf9d0d8",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }
