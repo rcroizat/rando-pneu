@@ -8,13 +8,13 @@
 </ion-header>
 <ion-content padding>
     <ion-list>
-        <ion-item class="file" ion-item *ngFor="let fiche of fiches" (click)="detailPage(fiche.id)">
+        <div class="file" tappable ion-item *ngFor="let fiche of fiches" (click)="detailPage(fiche.id)">
             <ion-icon name="ios-document" class="icon" color="{{fiche.envoye ? 'envoye' : 'primary'}}" item-left></ion-icon>
             {{fiche.nomClient}}
-            <ion-icon name="md-create" class="icon" color="primary" item-right (click)="edit($event, fiche.id)"></ion-icon>
-            <ion-icon name="md-trash" class="icon" color="primary" item-right (click)="delete($event, fiche.id)"></ion-icon>
-            <ion-icon name="md-send" class="icon" color="primary" item-right (click)="send($event, fiche)"></ion-icon>
-        </ion-item>
+            <ion-icon name="md-create" class="icon" color="primary" tappable item-right (click)="edit($event, fiche.id)"></ion-icon>
+            <ion-icon name="md-trash" class="icon" color="primary" tappable item-right (click)="delete($event, fiche.id)"></ion-icon>
+            <ion-icon name="md-send" class="icon" color="primary" tappable item-right (click)="send($event, fiche)"></ion-icon>
+        </div>
         <ion-item *ngIf="fiches?.length == 0">Vous n'avez pas de fiche
         </ion-item>
     </ion-list>

@@ -295,7 +295,7 @@
                             <ion-list>
                                 <!--i correspond a l index de la ligne ; s'affiche en dessous du bon champs de recherche-->
                                 <ion-item *ngFor="let fourniture of fournituresList;  let x=index">
-                                    <div *ngIf="x<2" (click)="insertInput(fourniture, i)">
+                                    <div *ngIf="x<2" tappable (click)="insertInput(fourniture, i)">
                                         {{fourniture}}
                                     </div>
                                 </ion-item>
@@ -310,7 +310,7 @@
                 <ion-row justify-content-between>
                     <ion-col col-6>
                         <ion-item mode="wp">
-                            <ion-icon name="md-add-circle" (click)="addFourniture()" color="primary" style="font-size:5rem;"></ion-icon>
+                            <ion-icon name="md-add-circle" tappable (click)="addFourniture()" color="primary" style="font-size:5rem;"></ion-icon>
                         </ion-item>
 
                     </ion-col>

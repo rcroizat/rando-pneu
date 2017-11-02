@@ -8,10 +8,10 @@
 </ion-header>
 <ion-content padding>
     <ion-list>
-        <ion-item [style.color]="'red'" (click)="deconnexion()">
+        <div ion-item tappable [style.color]="'red'" (click)="deconnexion()">
            Déconnexion
             <ion-icon name="md-close"></ion-icon>
-        </ion-item>
+        </div>
         <ion-item>
             <ion-toggle (ionChange)="change($event)" checked="false"></ion-toggle>
             <ion-label>

@@ -7,9 +7,9 @@
 
   <ion-content [style.backgroundColor] = "'#B9AA97'">
     <ion-list>
-      <ion-item class="itemMenu"  menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+      <div tappable ion-item class="itemMenu"  menuClose *ngFor="let p of pages" (click)="openPage(p)">
        <ion-icon class="iconMenu" name="{{p.icon}}"></ion-icon> {{p.title}}
-      </ion-item>
+      </div>
     </ion-list>
   </ion-content>
 
