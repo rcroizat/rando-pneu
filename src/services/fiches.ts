@@ -17,7 +17,7 @@ export class FicheService {
 
   fiche: any;
   user: any;
-  constructor(public events: Events, private loadingController: LoadingController, public storage: Storage, public http: Http, public alertCtrl: AlertController) {
+  constructor(public events: Events, public loadingCtrl: LoadingController, public storage: Storage, public http: Http, public alertCtrl: AlertController) {
     this.fiche = [];
     this.storage.get('user').then((user) => {
       this.user = user;
@@ -48,6 +48,12 @@ export class FicheService {
 
 
   sendFiche(fiche: Fiche, autosend: number = 0) {
+    const loading = this.loadingCtrl.create({
+      content: 'Envoi en cour...'
+    });
+
+    loading.present();
+
     let ficheClean: any = fiche;
     // ficheClean.signatureClient = encodeURIComponent(window.btoa(ficheClean.signatureClient));
     // ficheClean.signatureResponsable = encodeURIComponent(window.btoa(ficheClean.signatureResponsable));
@@ -62,6 +68,7 @@ export class FicheService {
       .subscribe(
       res => {
         if (res) {
+          loading.dismiss(); // fin du loading
           let alert = this.alertCtrl.create({
             title: 'Demande envoyée !',
             subTitle: 'Votre fiche a bien été envoyée.',
@@ -85,6 +92,7 @@ export class FicheService {
         }
       },
       error => {
+        loading.dismiss(); // fin du loading
         let alert = this.alertCtrl.create({
           title: 'Erreur',
           subTitle: 'Votre fiche n\'a pas été envoyée, elle sera envoyée lorsque le serveur sera joignable.',
