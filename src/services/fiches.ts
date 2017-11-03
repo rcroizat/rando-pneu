@@ -49,7 +49,7 @@ export class FicheService {
 
   sendFiche(fiche: Fiche, autosend: number = 0) {
     const loading = this.loadingCtrl.create({
-      content: 'Envoi en cour...'
+      content: 'Envoi en cours...'
     });
 
     loading.present();
