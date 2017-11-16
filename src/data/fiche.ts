@@ -6,7 +6,6 @@ export class Fiche {
         depart: string;
         temps: string;
         positionRoue:string;
-        chiffrage: any;
         nomClient:string;
         nomAdresse: string;
         dimension:string;

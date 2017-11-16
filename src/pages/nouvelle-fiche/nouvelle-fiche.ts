@@ -44,7 +44,6 @@ export class NouvelleFichePage {
 			depart: [''],
 			temps: [''],
 			positionRoue: ['', Validators.required],
-			chiffrage: [''],
 			nomClient: ['', Validators.required],
 			nomAdresse: [''],
 			dimension: [''],

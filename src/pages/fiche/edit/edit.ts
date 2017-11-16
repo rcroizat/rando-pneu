@@ -64,7 +64,6 @@ export class EditPage implements OnInit {
       depart: [this.fiche.depart],
       temps: [this.fiche.temps],
       positionRoue: [this.fiche.positionRoue, Validators.required],
-      chiffrage: [this.fiche.chiffrage],
       nomClient: [this.fiche.nomClient, Validators.required],
       nomAdresse: [this.fiche.nomAdresse],
       dimension: [this.fiche.dimension],
