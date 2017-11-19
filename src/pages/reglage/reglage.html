@@ -13,7 +13,7 @@
             <ion-icon name="md-close"></ion-icon>
         </div>
         <ion-item>
-            <ion-toggle (ionChange)="change($event)" checked="false"></ion-toggle>
+            <ion-toggle [checked]="autosend" (ionChange)="change($event)" ></ion-toggle>
             <ion-label>
                 Envoyer la fiche à l'enregistrement
             </ion-label>

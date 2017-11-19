@@ -10,9 +10,11 @@ import {LoginPage} from '../login/login';
   templateUrl: 'reglage.html'
 })
 export class ReglagePage {
-
+  autosend : boolean;
   constructor(public alertCtrl: AlertController, public navCtrl: NavController, private _userService : UserService) {
-    
+    this._userService.getState().then(autosend => {
+      this.autosend = autosend
+    })
   }
 
   deconnexion(){
@@ -20,6 +22,7 @@ export class ReglagePage {
    	this.showConfirm();
   }
 
+  
   showConfirm() {
     let confirm = this.alertCtrl.create({
       title: 'Confirmation',
