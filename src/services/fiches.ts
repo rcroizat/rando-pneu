@@ -47,7 +47,7 @@ export class FicheService {
   }
 
 
-  sendFiche(fiche: Fiche, autosend: number = 0) {
+  sendFiche(fiche: Fiche) {
     const loading = this.loadingCtrl.create({
       content: 'Envoi en cours...'
     });
@@ -85,9 +85,8 @@ export class FicheService {
           ficheClean.envoye = true; // on maj le champs envoye a true, et on edit la fiche
           ficheClean.Aenvoyer = false; // on maj le champs envoye a true, et on edit la fiche
 
-          if (!autosend) { // si lautosend est activé, la fiche n'est pas engeristrée sur le device, donc on l'edit pas
-            this.edit(ficheClean.id, ficheClean);
-          }
+          this.edit(ficheClean.id, ficheClean);
+
           alert.present();
         }
       },
@@ -100,9 +99,7 @@ export class FicheService {
         });
         ficheClean.aEnvoyer = true; // on maj le champs Aenvoyer a true, et on edit la fiche
         ficheClean.envoye = false;
-        if (!autosend) { // si lautosend est activé, la fiche n'est pas engeristrée sur le device, donc on l'edit pas
-          this.edit(ficheClean.id, ficheClean);
-        }
+        this.edit(ficheClean.id, ficheClean);
         alert.present();
       }
       )
