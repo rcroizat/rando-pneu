@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 import { Fiche } from '../data/fiche';
 import { Storage } from '@ionic/storage';
-
+import { User} from '../data/user'
 
 
 import { AlertController, LoadingController, Events } from 'ionic-angular';
@@ -16,13 +16,10 @@ export class FicheService {
   private headers = new Headers({ 'Content-Type': 'application/json' });
 
   fiche: any;
-  user: any;
+  user: User;
   constructor(public events: Events, public loadingCtrl: LoadingController, public storage: Storage, public http: Http, public alertCtrl: AlertController) {
     this.fiche = [];
-    this.storage.get('user').then((user) => {
-      this.user = user;
-    });
-    ;
+    
   }
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error);
@@ -47,7 +44,7 @@ export class FicheService {
   }
 
 
-  sendFiche(fiche: Fiche) {
+  async sendFiche(fiche: Fiche) {
     const loading = this.loadingCtrl.create({
       content: 'Envoi en cours...'
     });
@@ -55,13 +52,11 @@ export class FicheService {
     loading.present();
 
     let ficheClean: any = fiche;
+    const user = await this.storage.get('user');
     // ficheClean.signatureClient = encodeURIComponent(window.btoa(ficheClean.signatureClient));
     // ficheClean.signatureResponsable = encodeURIComponent(window.btoa(ficheClean.signatureResponsable));
-    ficheClean.nom = this.user.nom || "Sans nom";
-    ficheClean.prenom = this.user.prenom || 'Sans prénom';
-
-
-
+    ficheClean.nom = user.nom || "Sans nom";
+    ficheClean.prenom = user.prenom || 'Sans prénom';
     /************************/
     return this.http
       .post(this.url, JSON.stringify(ficheClean), { headers: this.headers })

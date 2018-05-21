@@ -140,7 +140,6 @@ export class NouvelleFichePage {
 		this.ficheForm.value.envoye = false;
 		this.ficheForm.value.emplatre.nom = this.ficheForm.value.emplatre.nom || 'Emplatre'; // on met le nom emplatre par default
 		this.ficheForm.value.valve.nom = this.ficheForm.value.valve.nom || 'Valve'; // on met le nom valve par default
-
 		this._ficheService.create(this.ficheForm.value, (value) => {
 			if (value) {
 				this.callback();
@@ -157,6 +156,18 @@ export class NouvelleFichePage {
 			this.nav.setRoot(FichePage);
 		}
 	}
+
+
+
+	clear (signature : string){
+		console.log('jjj')
+		if(signature === 'client'){
+			this.signatureClient.signaturePad.clear()
+		}else if (signature === 'responsable') {
+			this.signatureResponsable.signaturePad.clear()
+		}
+	  }
+
 
 		initializeItems() {
 			this.fournituresList = [

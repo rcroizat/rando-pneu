@@ -24,6 +24,7 @@ export class SignatureResponsable {
 	}
 
 
+
   private ngAfterViewInit() {
   	// this.signaturePad is now available
 

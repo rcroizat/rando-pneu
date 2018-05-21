@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
+import { Headers, Http } from '@angular/http';
 import { Storage } from '@ionic/storage';
-import { Headers, Http } from '@angular/http';/*
-import { User } from '../data/user';*/
-import 'rxjs/add/operator/map';
+import { User } from '../data/user';
 import 'rxjs/add/operator/toPromise';
 
 
@@ -22,7 +21,7 @@ private headers = new Headers({'Content-Type': 'application/json'});
 
   
 
-  login(user : any) {
+  login(user : User) {
     if (user.login === null || user.password === null) {
       return null;
     } else {
@@ -34,16 +33,16 @@ private headers = new Headers({'Content-Type': 'application/json'});
       };
   }  
 
-  storUser(user:any){
+  storUser(user:User){
    this.storage.set('user', user);
   }
 
 
-  deleteAll() {
+  deleteAll() : Promise<any> {
    return this.storage.clear();
   }
 
-  autoSend(state : boolean){
+  autoSend(state : boolean) {
       this.storage.set('autoSend', state);
   }
   getState(){
