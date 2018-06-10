@@ -7,8 +7,8 @@ import { HttpModule }    from '@angular/http';
 import { SignaturePadModule } from 'angular2-signaturepad';
 
 
-import { SignatureClient } from '../pages/nouvelle-fiche/signatures/client';
-import { SignatureResponsable } from '../pages/nouvelle-fiche/signatures/responsable';
+import { SignatureClient } from '../pages/signatures/client';
+import { SignatureResponsable } from '../pages/signatures/responsable';
 
 import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';

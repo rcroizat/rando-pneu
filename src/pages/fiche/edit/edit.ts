@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 
 import { NavParams, AlertController, NavController } from 'ionic-angular';
 
@@ -8,11 +8,27 @@ import { Fiche } from '../../../data/fiche';
 import { FicheService } from '../../../services/fiches';
 import { FichePage } from '../fiche';
 
+import { SignatureClient } from '../../signatures/client';
+import { SignatureResponsable } from '../../signatures/responsable';
+
+
+
 @Component({
   selector: 'edit',
   templateUrl: 'edit.html'
 })
-export class EditPage implements OnInit {
+export class EditPage implements OnInit, AfterViewInit {
+
+  signatureClient: SignatureClient;
+  signatureResponsable: SignatureResponsable;
+  @ViewChild(SignatureClient) set ft(sc: SignatureClient) {
+    this.signatureClient = sc;
+  }
+
+  @ViewChild(SignatureResponsable) set fo(sr: SignatureResponsable) {
+    this.signatureResponsable = sr;
+  }
+
 
   fiche: Fiche;
   ficheForm: FormGroup;
@@ -30,18 +46,25 @@ export class EditPage implements OnInit {
   }
 
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.getFiche(this.id);
   }
 
+  ngAfterViewInit() {
+    setTimeout(() => {
+      this.signatureClient.signaturePad.fromDataURL(this.fiche.signatureClient);
+      this.signatureResponsable.signaturePad.fromDataURL(this.fiche.signatureResponsable);
 
-  getFiche(id: number): void {
-    this._ficheService.getFiche(id)
+    }, 500);
+
+  }
+  getFiche(id: number): Promise<void> {
+    return this._ficheService.getFiche(id)
       .then(
-      fiche => {
-        this.fiche = fiche;
-        this.constructFourni();
-      }
+        fiche => {
+          this.fiche = fiche;
+          this.constructFourni();
+        }
       );
     ;// construit le tableau des fournitures
   }
@@ -56,6 +79,8 @@ export class EditPage implements OnInit {
       );
     }
     this.initForm(); // une fois qu'on a fait le tableau on init le form
+
+
   }
 
   initForm() {
@@ -94,9 +119,9 @@ export class EditPage implements OnInit {
 
 
   submit(): void {
- this.ficheForm.value.signatureClient = this.fiche.signatureClient;
- this.ficheForm.value.signatureResponsable = this.fiche.signatureResponsable;
-    this._ficheService.edit(this.id, this.ficheForm.value,)
+    this.ficheForm.value.signatureClient = this.signatureClient.getSignature(); // 
+    this.ficheForm.value.signatureResponsable = this.signatureResponsable.getSignature(); // 
+    this._ficheService.edit(this.id, this.ficheForm.value, )
       .then(() => {
         this.navCtrl.setRoot(FichePage);
       });
@@ -104,6 +129,8 @@ export class EditPage implements OnInit {
 
 
   addFourniture() {
+
+    console.log(this.signatureClient)
     const control = <FormArray>this.ficheForm.controls['fournitures'];
     control.push(this.createItem());
   }
@@ -144,6 +171,14 @@ export class EditPage implements OnInit {
     };
   }
 
+
+  clear(signature: string) {
+    if (signature === 'client') {
+      this.signatureClient.signaturePad.clear()
+    } else if (signature === 'responsable') {
+      this.signatureResponsable.signaturePad.clear()
+    }
+  }
 
 
   initializeItems() {

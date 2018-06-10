@@ -26,7 +26,7 @@ export class ReglagePage {
   showConfirm() {
     let confirm = this.alertCtrl.create({
       title: 'Confirmation',
-      message: 'Voulez-vous vraiment vous déconnecter, cela supprimera toutes vos fiches ?',
+      message: 'Il est vivement déconseillé de vous déconnecter, cela supprimera toutes vos fiches. Souhaitez-vous malgré tout vous déconnecter ?',
       buttons: [
         {
           text: 'Oui',
