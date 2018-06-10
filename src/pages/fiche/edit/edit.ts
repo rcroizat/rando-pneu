@@ -12,6 +12,9 @@ import { SignatureClient } from '../../signatures/client';
 import { SignatureResponsable } from '../../signatures/responsable';
 
 
+//packages
+import * as moment from 'moment';
+
 
 @Component({
   selector: 'edit',
@@ -83,6 +86,7 @@ export class EditPage implements OnInit, AfterViewInit {
 
   }
 
+
   initForm() {
     this.ficheForm = this.formBuilder.group({
       arrive: [this.fiche.arrive, Validators.required],
@@ -117,6 +121,35 @@ export class EditPage implements OnInit, AfterViewInit {
     });
   }
 
+
+  calculTime(): void {
+    if (this.ficheForm.get('depart') && this.ficheForm.get('arrive')) {
+      let arrive = this.ficheForm.get('arrive').value;
+      let depart = this.ficheForm.get('depart').value;
+      depart = moment(depart, 'HH:mm');
+      arrive = moment(arrive, 'HH:mm');
+      let diff = moment.utc(depart.diff(arrive));
+      let heures = diff.hours();
+      let minutes = diff.minutes();
+      (heures as any) = heures ? heures+'h' : '';
+      (minutes as any) = this.formatTempsPasse(minutes, 'm');
+
+      let format = heures + minutes;
+      this.ficheForm.controls['temps'].setValue(format);
+
+    }
+  }
+	formatTempsPasse(dataTime : number, initial : string){
+	  let unit : any = dataTime;
+	  if(unit ===0){
+		unit = '';
+	  }else if (unit > 0 && unit < 10){
+		unit = '0'+unit+initial;
+	  }else{
+		unit = unit+initial;
+	  }
+	  return unit;
+	}
 
   submit(): void {
     this.ficheForm.value.signatureClient = this.signatureClient.getSignature(); // 

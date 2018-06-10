@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController , MenuController} from 'ionic-angular';
 import {Validators, FormBuilder, FormGroup} from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { AccueilPage } from '../accueil/accueil';
@@ -15,8 +15,11 @@ export class LoginPage {
 	user:any;
 
 
-	constructor( public navCtrl: NavController, private formBuilder: FormBuilder, private _userService : UserService) {
-	  this.loginForm = this.formBuilder.group({
+	constructor(  private menu: MenuController, public navCtrl: NavController, private formBuilder: FormBuilder, private _userService : UserService) {
+	 
+    this.menu = menu;
+    this.menu.swipeEnable(false);
+		this.loginForm = this.formBuilder.group({
 	      login: ['', Validators.required],
 	      password: ['', Validators.required]
     	});
