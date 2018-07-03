@@ -129,12 +129,12 @@ export class EditPage implements OnInit, AfterViewInit {
       depart = moment(depart, 'HH:mm');
       arrive = moment(arrive, 'HH:mm');
       let diff = moment.utc(depart.diff(arrive));
-      let heures = diff.hours();
-      let minutes = diff.minutes();
-      (heures as any) = heures ? heures+'h' : '';
-      (minutes as any) = this.formatTempsPasse(minutes, 'm');
+      let heures : any = diff.hours();
+      let minutes : any = diff.minutes();
+      heures = heures ? heures+'h' : '';
+      minutes = this.formatTempsPasse(minutes, 'm');
 
-      let format = heures + minutes;
+      let format : string = heures + minutes;
       this.ficheForm.controls['temps'].setValue(format);
 
     }
