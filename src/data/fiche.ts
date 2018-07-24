@@ -18,7 +18,6 @@ export class Fiche {
         chaair:string;
         retaillage:string;
         emplatre:any;
-        valve:any;
         forfait:string;
         observation:string;
         numeroPneu:string;

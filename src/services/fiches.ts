@@ -12,7 +12,7 @@ import 'rxjs/Rx';
 
 @Injectable()
 export class FicheService {
-  private url = 'http://www.rando-pneus.fr/api/mail.php';  // URL to web api
+  private url = 'https://www.rando-pneus.fr/api/mail.php';  // URL to web api
   private headers = new Headers({ 'Content-Type': 'application/json' });
 
   fiche: any;
@@ -55,8 +55,8 @@ export class FicheService {
     const user = await this.storage.get('user');
     // ficheClean.signatureClient = encodeURIComponent(window.btoa(ficheClean.signatureClient));
     // ficheClean.signatureResponsable = encodeURIComponent(window.btoa(ficheClean.signatureResponsable));
-    ficheClean.nom = user.nom || "Sans nom";
-    ficheClean.prenom = user.prenom || 'Sans prénom';
+    ficheClean.nom = user.nom || "XXX";
+    ficheClean.prenom = user.prenom || 'XXX';
     /************************/
     return this.http
       .post(this.url, JSON.stringify(ficheClean), { headers: this.headers })

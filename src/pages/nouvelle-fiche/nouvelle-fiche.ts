@@ -60,10 +60,6 @@ export class NouvelleFichePage implements OnInit {
 				nom: '',
 				quantite: ''
 			}),
-			valve: this.formBuilder.group({ // <-- the child FormGroup
-				nom: '',
-				quantite: ''
-			}),
 			forfait: [''],
 			observation: [''],
 			numeroPneu: [''],
@@ -90,34 +86,34 @@ export class NouvelleFichePage implements OnInit {
 	}
 
 	calculTime(): void {
-		if (this.ficheForm.get('depart') && this.ficheForm.get('arrive')) {
-		  let arrive = this.ficheForm.get('arrive').value;
-		  let depart = this.ficheForm.get('depart').value;
-		  depart = moment(depart, 'HH:mm');
-		  arrive = moment(arrive, 'HH:mm');
-		  let diff = moment.utc(depart.diff(arrive));
-		  let heures : any = diff.hours();
-		  let minutes : any = diff.minutes();
-		  heures = heures ? heures+'h' : '';
-		  minutes = this.formatTempsPasse(minutes, 'm');
-	
-		  let format : string = heures + minutes;
-		  this.ficheForm.controls['temps'].setValue(format);
-	
+		if (this.ficheForm.get('depart').value !== '' && this.ficheForm.get('arrive').value !== '') {
+			let arrive = this.ficheForm.get('arrive').value;
+			let depart = this.ficheForm.get('depart').value;
+			depart = moment(depart, 'HH:mm');
+			arrive = moment(arrive, 'HH:mm');
+			let diff = moment.utc(depart.diff(arrive));
+			let heures: any = diff.hours();
+			let minutes: any = diff.minutes();
+			heures = heures ? heures + 'h' : '';
+			minutes = this.formatTempsPasse(minutes, 'm');
+
+			let format: string = heures + minutes;
+			this.ficheForm.controls['temps'].setValue(format);
+
 		}
-	  }
-		formatTempsPasse(dataTime : number, initial : string){
-		  let unit : any = dataTime;
-		  if(unit ===0){
+	}
+	formatTempsPasse(dataTime: number, initial: string) {
+		let unit: any = dataTime;
+		if (unit === 0) {
 			unit = '';
-		  }else if (unit > 0 && unit < 10){
-			unit = '0'+unit+initial;
-		  }else{
-			unit = unit+initial;
-		  }
-		  return unit;
+		} else if (unit > 0 && unit < 10) {
+			unit = '0' + unit + initial;
+		} else {
+			unit = unit + initial;
 		}
-	
+		return unit;
+	}
+
 	/* AUTOCOMPLETION FOURNITURES OLD WAY START*/
 	insertInput(fourniture: string, i: number) {
 		// insert le résultat de la recherche dans le bon champ
@@ -172,8 +168,7 @@ export class NouvelleFichePage implements OnInit {
 		this.ficheForm.value.signatureResponsable = this.signatureResponsable.getSignature();
 		this.ficheForm.value.aEnvoyer = false;
 		this.ficheForm.value.envoye = false;
-		this.ficheForm.value.emplatre.nom = this.ficheForm.value.emplatre.nom || 'Emplatre'; // on met le nom emplatre par default
-		this.ficheForm.value.valve.nom = this.ficheForm.value.valve.nom || 'Valve'; // on met le nom valve par default
+		this.ficheForm.value.emplatre.nom = this.ficheForm.value.emplatre.nom || 'Emplâtre'; // on met le nom emplatre par default
 		this._ficheService.create(this.ficheForm.value, (value) => {
 			if (value) {
 				this.callback();
@@ -204,16 +199,11 @@ export class NouvelleFichePage implements OnInit {
 
 	initializeItems() {
 		this.fournituresList = [
-			'C21 Démontage / Remontage PL',
 			'C24 Dépose / Repose PL',
-			'C26 Réparation à froid',
 			'C29 Retaillage',
 			'C30 Equilibrage petit PL',
 			'C31 Equilibre grand PL',
-			'C33 Forfait véhiculé',
 			'C40 Heure d’attente',
-			'C57 Déplacement astreinte',
-			'C61 Gonflage mousse polyurethane (kgs)',
 			'G200 Rallonge 1197',
 			'G201 Rallonge 382405 (Blanche rigide CTTE)',
 			'G205 Rallonge R210 (souple)',
@@ -221,38 +211,61 @@ export class NouvelleFichePage implements OnInit {
 			'G210 Rallonge V615 (rigide)',
 			'G281 Gonflage mousse polyurethane (kg)',
 			'G290 Litre produit anti-crevaison',
+			'Produit anti-crevaison',
+			'Jante neuve 385/65 X 22.5 Deport 0',
+			'Jante neuve 385/65 X 22.5 Deport 120',
+			'Jante neuve 315/80 X 22.5',
+			'Jante neuve 315/70 X 22.5',
 			'G296 Jante neuve 445/45 X 19.5(REF 6.00 X 19.5',
 			'G297 Jante neuve 215/75 X 17.5 (REF 6.00 X 17.5)',
 			'G298 Jante neuve 385/65 X 22.5 (REF 400 X 22.5)',
 			'G299 Jante neuve 235/245/ 75 X 17.5 (REF 6.75 X 17.5)',
-			'G300 Jante neuve 445/65 X 22.5 (REF1400 X 22.5)',
-			'G301 Jante neuve 13 X 22.5 - 315/80 X 22.5 (REF 9.00)',
-			'G309 Jante neuve 12 X 22.5 (8.25 x 22.5)',
+			'Jante neuve 445/65 X 22.5 (REF1400 X 22.5)',
+			'Jante neuve 13 X 22.5 - 315/80 X 22.5 (REF 9.00)',
+			'Jante neuve 12 X 22.5 (8.25 x 22.5)',
 			'G310 Jante neuve 11 X 22.5 (7.50 x 22.5)',
 			'G350 Joint tyran',
 			'G353 Joint cornifere REF 1528',
 			'G355 Joint sulla REF.1437 OR 325',
-			'G356 Joint heuro REF . 1438 OR225',
+			'G356 Joint heupo REF . 1438 OR225',
 			'G360 Flap 200-20',
 			'V401 CH. 145/155 X 12 - 5/70 X12',
-			'V410 Chambre à air 10 X 16.5',
-			'V411 Chambre à air 11.5/80 X 15.3',
+			'Chambre à air 11.5/80 X 15.3',
+			'Chambre à air 15.5/80 X 24',
+			'Chambre à air 12.5 X 18',
+			'Chambre à air 405/70 X 20',
+			'Chambre à air 5/70 X 12',
+			'Chambre à air 28.9 X 15',
+			'Chambre à air 23.1 X 26',
+			'Chambre à air 10 X 16.5',
+			'Chambre à air 11.5/80 X 15.3',
 			'V412 Chambre à air 205/6.50/700 X 16',
-			'V413 Chambre à air 12 X 16.5',
+			'Chambre à air 12 X 16.5',
 			'V417 Chambre à air 600 X 9',
-			'V420 Chambre à air 700 X 12',
+			'Chambre à air 700 X 12',
 			'V422 C. 7.50/8.25 X 15 - 8.15 X 15',
 			'V425 Chambre à air 10.5 X 18',
 			'V426 Chambre à air 12.5/80 X18',
 			'V427 Chambre à air 18 X 19.5',
-			'V428 Chambre à air 12.5 X 20',
-			'V429 Chambre à air 1000 X 20',
+			'Chambre à air 12.5 X 20',
+			'Chambre à air 1000 X 20',
 			'V430 Chambre à air 1200 X 20',
 			'V431 Chambre à air 14.5 X 20',
 			'V432 Chambre à air 23/8.50 X 12',
 			'V435 C. 14.9/ 15.5/80 X24 - 400/440/80 X 24',
 			'V438 Chambre à air 600/40 X 22.5',
-			'V443 Chambre à air 16/70 X 20 - 405/70 X20'
+			'V443 Chambre à air 16/70 X 20 - 405/70 X20',
+			'G106 Valve Alcoa Jante alu type 70MS07N2 (40)',
+			'G107 Valve TR 413',
+			'G108 Valve TR 414 L',
+			'G109 Valve TR 415',
+			'G127 Valve REF.1294 (445-385-18 X22.5)',
+			'G128 Valve GC',
+			'G130 Vave REF.1486 - REF.1680 (11-12)',
+			'G132 Valve GSW35 AIR&EAU',
+			'G133 Valve 2123 (courtes 13 X 22.5)',
+			'G135 Valve REF. 4441 (445/65X 22.5)',
+			'G136 Valve REF 1151 (445/65X 22.5',
 		];
 	}
 

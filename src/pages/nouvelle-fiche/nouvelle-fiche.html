@@ -81,14 +81,12 @@
                         <ion-item mode="wp">
 
                             <ion-select class="selectorTrio  trio" formControlName="dimension" placeholder="Dimension">
-                                <ion-option value="P2012">P2012 PNEU 10 X 16 NHS</ion-option>
-                                <ion-option value="P2919">P2919 PNEU 13 X 22.5 HANKOOK DM09 RR:D A:C 72DB</ion-option>
-                                <ion-option value="P2920">P2920 PNEU 13 X 22.5 HANKOOK AM06 R:D A:C 72DB</ion-option>
-                                <ion-option value="P2938">P2938 PNEU 385/65 X 22.5 HANKOOK .AM15 RR:D A:C</ion-option>
-                                <ion-option value="P3316">P3316 PNEU 315/70 X 22.5 CONTI.HYBRID HS3 154/15</ion-option>
-                                <ion-option value="P3318">P3318 PNEU 315/80 X 22.5 CONTINENTAL HYBRID HS3</ion-option>
-                                <ion-option value="P3320">P3320 PNEU 385/55 X 22.5 CONTINENTAL HYBRID HT3</ion-option>
-                                <ion-option value="P3337">P3337 PNEU 385/55 22.5 CONTINENTAL CHT3 160K</ion-option>
+                                <ion-option value="12 x 22.5 AM09 HANKOOK">pneu 12 x 22.5 AM09 HANKOOK</ion-option>
+                                <ion-option value="12 X 22.5 DM09 HANKOOK">pneu 12 X 22.5 DM09 HANKOOK</ion-option>
+                                <ion-option value="12 X 22.5 RECHAPE">pneu 12 X 22.5 RECHAPE</ion-option>
+                                <ion-option value="385/65 X 22.5 HT3 CONTINENTAL">pneu 385/65 X 22.5 HT3 CONTINENTAL</ion-option>
+                                <ion-option value="155 X 13 KUHMO">pneu 155 X 13 KUHMO</ion-option>
+                                <ion-option value="195/75 X 16 RA18 HANKOOK">pneu 195/75 X 16 RA18 HANKOOK</ion-option>
 
                             </ion-select>
                         </ion-item>
@@ -136,7 +134,7 @@
                 <ion-row justify-content-between>
                     <ion-col col-6>
                         <ion-item mode="wp">
-                            <ion-input mode="wp" type="text" class="readonly" readonly value="Dépose/repose space between">
+                            <ion-input mode="wp" type="text" class="readonly" readonly value="Dépose/repose">
                             </ion-input>
                         </ion-item>
                     </ion-col>
@@ -194,21 +192,21 @@
                     <ion-row justify-content-between>
                         <ion-col col-6>
                             <ion-item mode="wp">
-                                <ion-select class="selector" formControlName="nom" placeholder="Emplatre">
-                                    <ion-option value="G150">G150 Emplatre 110 TL</ion-option>
-                                    <ion-option value="G152">G152 Emplatre 120 TL</ion-option>
-                                    <ion-option value="G153">G153 Emplatre 125 TL</ion-option>
-                                    <ion-option value="G154">G154 Emplatre 135 TL</ion-option>
-                                    <ion-option value="G155">G155 Emplatre 140 TL</ion-option>
-                                    <ion-option value="G156">G156 Emplatre 142 TL</ion-option>
-                                    <ion-option value="G157">G157 Emplatre 144 TL</ion-option>
-                                    <ion-option value="G158">G158 Emplatre 145 TL</ion-option>
-                                    <ion-option value="G159">G159 Emplatre 146 TL</ion-option>
-                                    <ion-option value="G169">G169 Emplatre PN02L</ion-option>
-                                    <ion-option value="G170">G170 Emplatre PN03</ion-option>
-                                    <ion-option value="G171">G171 Emplatre PN04</ion-option>
-                                    <ion-option value="G172">G172 Emplatre PN05</ion-option>
-                                    <ion-option value="G173">G173 Emplatre PN06</ion-option>
+                                <ion-select class="selector" formControlName="nom" placeholder="Emplâtre">
+                                    <ion-option value="G150">G150 Emplâtre 110 TL</ion-option>
+                                    <ion-option value="G152">G152 Emplâtre 120 TL</ion-option>
+                                    <ion-option value="G153">G153 Emplâtre 125 TL</ion-option>
+                                    <ion-option value="G154">G154 Emplâtre 135 TL</ion-option>
+                                    <ion-option value="G155">G155 Emplâtre 140 TL</ion-option>
+                                    <ion-option value="G156">G156 Emplâtre 142 TL</ion-option>
+                                    <ion-option value="G157">G157 Emplâtre 144 TL</ion-option>
+                                    <ion-option value="G158">G158 Emplâtre 145 TL</ion-option>
+                                    <ion-option value="G159">G159 Emplâtre 146 TL</ion-option>
+                                    <ion-option value="G169">G169 Emplâtre PN02L</ion-option>
+                                    <ion-option value="G170">G170 Emplâtre PN03</ion-option>
+                                    <ion-option value="G171">G171 Emplâtre PN04</ion-option>
+                                    <ion-option value="G172">G172 Emplâtre PN05</ion-option>
+                                    <ion-option value="G173">G173 Emplâtre PN06</ion-option>
                                 </ion-select>
                             </ion-item>
                         </ion-col>
@@ -220,33 +218,6 @@
                     </ion-row>
                 </div>
 
-                <div formGroupName="valve">
-
-                    <ion-row justify-content-between>
-                        <ion-col col-6>
-                            <ion-item mode="wp">
-                                <ion-select class="selector" formControlName="nom" placeholder="Valve">
-                                    <ion-option value="G106">G106 Valve Alcoa Jante alu type 70MS07N2 (40)</ion-option>
-                                    <ion-option value="G107">G107 Valve TR 413</ion-option>
-                                    <ion-option value="G108">G108 Valve TR 414 L</ion-option>
-                                    <ion-option value="G109">G109 Valve TR 415</ion-option>
-                                    <ion-option value="G127">G127 Valve REF.1294 (445-385-18 X22.5)</ion-option>
-                                    <ion-option value="G128">G128 Valve GC</ion-option>
-                                    <ion-option value="G130">G130 Vave REF.1486 - REF.1680 (11-12)</ion-option>
-                                    <ion-option value="G132">G132 Valve GSW35 AIR&EAU</ion-option>
-                                    <ion-option value="G133">G133 Valve 2123 (courtes 13 X 22.5)</ion-option>
-                                    <ion-option value="G135">G135 Valve REF. 4441 (445/65X 22.5)</ion-option>
-                                    <ion-option value="G136">G136 Valve REF 1151 (445/65X 22.5)</ion-option>
-                                </ion-select>
-                            </ion-item>
-                        </ion-col>
-                        <ion-col col-6>
-                            <ion-item mode="wp">
-                                <ion-input mode="wp" formControlName="quantite" class="right" type="text" placeholder="Quantité"></ion-input>
-                            </ion-item>
-                        </ion-col>
-                    </ion-row>
-                </div>
                 <ion-row justify-content-between>
                     <ion-col col-6>
                         <ion-item mode="wp">

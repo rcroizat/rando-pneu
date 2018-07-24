@@ -8,7 +8,7 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class UserService {
-private url = 'http://www.rando-pneus.fr/api/login.php';  // URL to web api
+private url = 'https://www.rando-pneus.fr/api/login.php';  // URL to web api
 private headers = new Headers({'Content-Type': 'application/json'});
   constructor(public storage: Storage, public http: Http) {
 

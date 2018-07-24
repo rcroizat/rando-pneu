@@ -25,7 +25,7 @@ export class LoginPage {
     	});
 	}
 
-	submit() {
+	submit() {	    
 	  this._userService.login(this.loginForm.value)
 	    .then(user => {
 	    	this._userService.storUser(user);

@@ -25,7 +25,10 @@ export class FichePage implements OnInit {
   }
 
   getFiches(): void {
-    this._ficheService.getFiches().then(fiches => this.fiches = fiches);
+    this._ficheService.getFiches().then(fiches => {
+      this.fiches = fiches.reverse()
+    }
+    );
   }
 
 
