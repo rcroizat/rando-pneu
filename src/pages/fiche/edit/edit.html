@@ -231,8 +231,36 @@
                 </ion-row>
                 <!--FOURNITURE-->
 
-                <div formArrayName="fournitures">
-                    <!--Pour chaque tableau fourniture-->
+                <div formArrayName="fournitures" >
+                    <ng-container *ngFor="let fourniture of ficheForm.controls.fournitures.controls; let i=index" formGroupName="{{i}}">
+
+                        <ion-row justify-content-between>
+                            <ion-col col-6>
+
+                                <ion-item-sliding>
+                                    <ion-item mode="wp">
+                                        <ion-select class="selector" formControlName="nom" placeholder="Fourniture">
+                                            <ion-option *ngFor="let fourni of fournituresList" [value]="fourni">{{fourni}}</ion-option>
+                                        </ion-select>
+                                    </ion-item>
+                                    <ion-item-options side="left">
+                                        <button ion-button color="danger" (click)="deleteFourni(i)">
+                                            <ion-icon name="trash"></ion-icon>
+                                            Supprimer
+                                        </button>
+                                    </ion-item-options>
+                                </ion-item-sliding>
+                            </ion-col>
+                            <ion-col col-6>
+                                <ion-item mode="wp">
+                                    <ion-input mode="wp" formControlName="quantite" class="right" type="text" placeholder="Quantité"></ion-input>
+                                </ion-item>
+                            </ion-col>
+                        </ion-row>
+                    </ng-container>
+                </div>
+
+                <!-- <div formArrayName="fournitures">
 
                     <div *ngFor="let fourniture of ficheForm.controls.fournitures.controls; let i=index" formGroupName="{{i}}">
                         <ion-row justify-content-between>
@@ -258,7 +286,6 @@
                         </ion-row>
                         <ion-row *ngIf="i == [(numberForm)]">
                             <ion-list>
-                                <!--i correspond a l index de la ligne ; s'affiche en dessous du bon champs de recherche-->
                                 <ion-item *ngFor="let fourniture of fournituresList;  let x=index">
                                     <div *ngIf="x<2" tappable (click)="insertInput(fourniture, i)">
                                         {{fourniture}}
@@ -268,7 +295,7 @@
 
                         </ion-row>
                     </div>
-                </div>
+                </div> -->
 
 
 

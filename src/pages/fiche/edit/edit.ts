@@ -43,13 +43,12 @@ export class EditPage implements OnInit, AfterViewInit {
   numberForm: number;
 
   constructor(public navCtrl: NavController, public alertCtrl: AlertController, private formBuilder: FormBuilder, public params: NavParams, private _ficheService: FicheService) {
-
-
     this.id = this.params.get('id');
   }
 
 
   ngOnInit() {
+		this.initializeItems();
     this.getFiche(this.id);
   }
 
@@ -169,34 +168,6 @@ export class EditPage implements OnInit, AfterViewInit {
     });
   }
 
-  insertInput(fourniture: string, i: number) {
-    // insert le résultat de la recherche dans le bon champ
-    (<FormGroup>this.ficheForm.controls['fournitures']).controls[i].patchValue({
-      nom: fourniture
-    });
-    this.fournituresList = [];
-  };
-
-
-  getItems(ev: any, i: number) {
-    this.numberForm = i;
-    // Reset items back to all of the items
-    this.initializeItems();
-
-    // set val to the value of the searchbar
-    let val = ev.target.value;
-
-    // if the value is an empty string don't filter the items
-    if (val && val.trim() != '') {
-      this.fournituresList = this.fournituresList.filter((item) => {
-        return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
-      });
-      this.fournituresList = this.fournituresList.slice(0, 3);
-    }
-    else {
-      this.fournituresList = [];
-    };
-  }
 
 
   clear(signature: string) {

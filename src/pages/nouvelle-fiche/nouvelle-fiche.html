@@ -262,43 +262,6 @@
                     </ng-container>
                 </div>
 
-                <!-- 
-                <div formArrayName="fournitures">
-                    <div *ngFor="let fourniture of ficheForm.controls.fournitures.controls; let i=index" formGroupName="{{i}}">
-                        <ion-row justify-content-between>
-
-                            <ion-col col-6>
-                                <ion-item-sliding>
-                                    <ion-item mode="wp">
-                                        <ion-input mode="wp" (keyup)="getItems($event, i)" formControlName="nom" class="" type="text" placeholder="Fourniture"></ion-input>
-                                    </ion-item>
-                                    <ion-item-options side="left">
-                                        <button ion-button color="danger" (click)="deleteFourni(i)">
-                                            <ion-icon name="trash"></ion-icon>
-                                            Supprimer
-                                        </button>
-                                    </ion-item-options>
-                                </ion-item-sliding>
-                            </ion-col>
-                            <ion-col col-6>
-                                <ion-item mode="wp">
-                                    <ion-input mode="wp" class="right" type="text" formControlName="quantite" placeholder="Quantité"></ion-input>
-                                </ion-item>
-                            </ion-col>
-                        </ion-row>
-                        <ion-row *ngIf="i == [(numberForm)]">
-                            <ion-list>
-                               <ion-item *ngFor="let fourniture of fournituresList;  let x=index">
-                                    <div *ngIf="x<2" tappable (click)="insertInput(fourniture, i)">
-                                        {{fourniture}}
-                                    </div>
-                                </ion-item>
-                            </ion-list>
-
-                        </ion-row>
-                    </div>
-                </div> -->
-
                 <ion-row justify-content-between>
                     <ion-col col-6>
                         <ion-item mode="wp">

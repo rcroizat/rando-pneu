@@ -81,7 +81,6 @@ export class NouvelleFichePage implements OnInit {
 			this.autosend = autosend;
 		}
 		);
-
 		this.initializeItems();
 	}
 
