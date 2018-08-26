@@ -57,6 +57,6 @@ import { UserService } from '../services/user.service';
     ReglagePage,
     NouvelleFichePage
   ],
-  providers: [FicheService, UserService, Storage, {provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [FicheService, UserService, {provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
 export class AppModule {}
