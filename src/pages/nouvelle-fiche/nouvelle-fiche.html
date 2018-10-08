@@ -17,8 +17,8 @@
                 <ion-row justify-content-between>
                     <ion-col col-6>
                         <ion-item mode="wp">
-                            <ion-datetime tappable mode="wp" (ionChange)="calculTime()" formControlName="arrive" placeholder="Heure d'arrivée chez le client" cancelText="Annuler"
-                                doneText="Valider" displayFormat="HH:mm" pickerFormat="HH:mm"></ion-datetime>
+                            <ion-datetime tappable mode="wp" (ionChange)="calculTime()" formControlName="arrive" placeholder="Heure d'arrivée chez le client"
+                                cancelText="Annuler" doneText="Valider" displayFormat="HH:mm" pickerFormat="HH:mm"></ion-datetime>
                         </ion-item>
                     </ion-col>
 
@@ -26,8 +26,8 @@
                         <ion-item mode="wp">
 
                             <ion-label></ion-label>
-                            <ion-datetime mode="wp" formControlName="depart" (ionChange)="calculTime()" placeholder="Heure de départ" cancelText="Annuler" doneText="Valider" displayFormat="HH:mm"
-                                pickerFormat="HH:mm"></ion-datetime>
+                            <ion-datetime mode="wp" formControlName="depart" (ionChange)="calculTime()" placeholder="Heure de départ" cancelText="Annuler"
+                                doneText="Valider" displayFormat="HH:mm" pickerFormat="HH:mm"></ion-datetime>
                         </ion-item>
                     </ion-col>
                 </ion-row>
@@ -81,12 +81,19 @@
                         <ion-item mode="wp">
 
                             <ion-select class="selectorTrio  trio" formControlName="dimension" placeholder="Dimension">
+                                <ion-option value="0">Aucune</ion-option>
                                 <ion-option value="12 x 22.5 AM09 HANKOOK">pneu 12 x 22.5 AM09 HANKOOK</ion-option>
-                                <ion-option value="12 X 22.5 DM09 HANKOOK">pneu 12 X 22.5 DM09 HANKOOK</ion-option>
-                                <ion-option value="12 X 22.5 RECHAPE">pneu 12 X 22.5 RECHAPE</ion-option>
-                                <ion-option value="385/65 X 22.5 HT3 CONTINENTAL">pneu 385/65 X 22.5 HT3 CONTINENTAL</ion-option>
-                                <ion-option value="155 X 13 KUHMO">pneu 155 X 13 KUHMO</ion-option>
-                                <ion-option value="195/75 X 16 RA18 HANKOOK">pneu 195/75 X 16 RA18 HANKOOK</ion-option>
+                                <ion-option value="13 x 22.5 AM09 HANKOOK">pneu 13 x 22.5 AM09 HANKOOK</ion-option>
+                                <ion-option value="12 x 22.5 DM09 HANKOOK">pneu 12 x 22.5 DM09 HANKOOK</ion-option>
+                                <ion-option value="13 x 22.5 DM09 HANKOOK">pneu 13 x 22.5 DM09 HANKOOK</ion-option>
+                                <ion-option value="12 x 22.5 RECHAPE">pneu 12 x 22.5 RECHAPE</ion-option>
+                                <ion-option value="10 x 16.5 NHS">pneu 10 x 16.5 NHS</ion-option>
+                                <ion-option value="385/65 x 22.5 TM15 HANKOOK">pneu 385/65 x 22.5 TM15 HANKOOK</ion-option>
+                                <ion-option value="385/65 x 22.5 HT3 CONTINENTAL">pneu 385/65 x 22.5 HT3 CONTINENTAL</ion-option>
+                                <ion-option value="315/80 x 22.5 HS3 CONTINENTAL">pneu 315/80 x 22.5 HS3 CONTINENTAL</ion-option>
+                                <ion-option value="315/70 x 22.5 HS3 CONTINENTAL">pneu 315/70 x 22.5 HS3 CONTINENTAL</ion-option>
+                                <ion-option value="155 x 13 KUHMO">pneu 155 x 13 KUHMO</ion-option>
+                                <ion-option value="195/75 x 16 RA18 HANKOOK">pneu 195/75 x 16 RA18 HANKOOK</ion-option>
 
                             </ion-select>
                         </ion-item>
@@ -193,20 +200,19 @@
                         <ion-col col-6>
                             <ion-item mode="wp">
                                 <ion-select class="selector" formControlName="nom" placeholder="Emplâtre">
-                                    <ion-option value="G150">G150 Emplâtre 110 TL</ion-option>
-                                    <ion-option value="G152">G152 Emplâtre 120 TL</ion-option>
-                                    <ion-option value="G153">G153 Emplâtre 125 TL</ion-option>
-                                    <ion-option value="G154">G154 Emplâtre 135 TL</ion-option>
-                                    <ion-option value="G155">G155 Emplâtre 140 TL</ion-option>
-                                    <ion-option value="G156">G156 Emplâtre 142 TL</ion-option>
-                                    <ion-option value="G157">G157 Emplâtre 144 TL</ion-option>
-                                    <ion-option value="G158">G158 Emplâtre 145 TL</ion-option>
-                                    <ion-option value="G159">G159 Emplâtre 146 TL</ion-option>
-                                    <ion-option value="G169">G169 Emplâtre PN02L</ion-option>
-                                    <ion-option value="G170">G170 Emplâtre PN03</ion-option>
-                                    <ion-option value="G171">G171 Emplâtre PN04</ion-option>
-                                    <ion-option value="G172">G172 Emplâtre PN05</ion-option>
-                                    <ion-option value="G173">G173 Emplâtre PN06</ion-option>
+                                    <ion-option value="Emplâtre 110 TL">Emplâtre 110 TL</ion-option>
+                                    <ion-option value="Emplâtre 120 TL">Emplâtre 120 TL</ion-option>
+                                    <ion-option value="Emplâtre 125 TL">Emplâtre 125 TL</ion-option>
+                                    <ion-option value="Emplâtre 135 TL">Emplâtre 135 TL</ion-option>
+                                    <ion-option value="Emplâtre 140 TL">Emplâtre 140 TL</ion-option>
+                                    <ion-option value="Emplâtre 142 TL">Emplâtre 142 TL</ion-option>
+                                    <ion-option value="Emplâtre 145 TL">Emplâtre 145 TL</ion-option>
+                                    <!--  <ion-option value="G159">Emplâtre 146 TL</ion-option>
+                                    <ion-option value="G169">Emplâtre PN02L</ion-option>
+                                    <ion-option value="G170">Emplâtre PN03</ion-option>
+                                    <ion-option value="G171">Emplâtre PN04</ion-option>
+                                    <ion-option value="G172">Emplâtre PN05</ion-option>
+                                    <ion-option value="G173">Emplâtre PN06</ion-option> -->
                                 </ion-select>
                             </ion-item>
                         </ion-col>
@@ -233,7 +239,7 @@
 
 
 
-                <div formArrayName="fournitures" >
+                <div formArrayName="fournitures">
                     <ng-container *ngFor="let fourniture of ficheForm.controls.fournitures.controls; let i=index" formGroupName="{{i}}">
 
                         <ion-row justify-content-between>

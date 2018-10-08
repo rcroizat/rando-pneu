@@ -71,5 +71,5 @@
     <plugin name="cordova-plugin-splashscreen" spec="~4.0.1" />
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="3000" />
-    <engine name="ios" spec="~4.4.0" />
+    <engine name="ios" spec="4.4.0" />
 </widget>
